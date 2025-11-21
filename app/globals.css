@@ -8,6 +8,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Comic";
+  src: url("/fonts/Comic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Comic";
+  src: url("/fonts/Comic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-neon-green: rgb(225, 255, 91);
   --color-white: rgb(248, 248, 248);
@@ -31,4 +47,12 @@ body {
 .font-groen {
   font-family: "Groen", sans-serif;
   font-weight: normal !important;
+}
+
+.font-comic {
+  font-family: "Comic", sans-serif;
+}
+
+.shadow-layered {
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
 }
