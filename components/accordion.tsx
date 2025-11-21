@@ -25,7 +25,7 @@ function AccordionItem({
     >
       <button
         onClick={onToggle}
-        className='w-full text-left p-4 flex items-center justify-between gap-4 focus:outline-none rounded-3xl'
+        className='w-full text-left px-6 py-3 flex items-center justify-between gap-4 focus:outline-none rounded-3xl'
       >
         <h3 className='text-base font-bold flex-1'>{question}</h3>
         <div
@@ -53,7 +53,7 @@ function AccordionItem({
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className='px-4 pb-4 pt-0'>
+        <div className='px-6 py-3'>
           <p className='text-sm text-black/90 leading-relaxed'>{answer}</p>
         </div>
       </div>
