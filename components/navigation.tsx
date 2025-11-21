@@ -11,9 +11,8 @@ export function Navigation() {
   const linkRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   const links = [
-    { href: "/#how-it-works", label: "How it works", isScroll: true },
+    { href: "/#why-we-love-spot", label: "How it works", isScroll: true },
     { href: "/#zones", label: "Zones", isScroll: true },
-    { href: "/#faq", label: "FAQ", isScroll: true },
   ];
 
   const handleScrollToTop = () => {

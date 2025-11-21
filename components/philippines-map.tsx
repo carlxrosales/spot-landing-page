@@ -96,7 +96,7 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
       </div>
 
       <Map
-        key={mapStyle} // Force re-render when style changes
+        key={mapStyle}
         {...viewState}
         onMove={(evt) => setViewState(evt.viewState)}
         onLoad={() => setMapLoaded(true)}
