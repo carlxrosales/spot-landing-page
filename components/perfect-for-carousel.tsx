@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+
 interface PerfectForItem {
   name: string;
   emoji: string;
@@ -15,7 +17,8 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
   const row2 = items.slice(3, 6);
   const row3 = items.slice(6, 9);
 
-  // Duplicate items for seamless infinite loop
+  // Duplicate items 3 times for seamless infinite loop
+  // When animation completes one cycle, it resets to show identical content
   const duplicateItems = (items: PerfectForItem[]) => [
     ...items,
     ...items,
@@ -26,9 +29,67 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
   const row2Items = duplicateItems(row2);
   const row3Items = duplicateItems(row3);
 
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
+  const row3Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const calculateAndSetDistance = (
+      containerRef: React.RefObject<HTMLDivElement | null>
+    ) => {
+      if (!containerRef.current) return;
+
+      const container = containerRef.current;
+      const children = Array.from(container.children) as HTMLElement[];
+      if (children.length < 9) return; // Need at least 3 sets (9 items)
+
+      // Calculate width of first set (first 3 items + 2 gaps)
+      let firstSetWidth = 0;
+      const gap = 32; // gap-8 = 2rem = 32px
+
+      for (let i = 0; i < 3; i++) {
+        if (children[i]) {
+          firstSetWidth += children[i].offsetWidth;
+          if (i < 2) firstSetWidth += gap;
+        }
+      }
+
+      // Set the animation distance to exactly one set's width
+      container.style.setProperty("--set-width", `${firstSetWidth}px`);
+    };
+
+    const updateAll = () => {
+      calculateAndSetDistance(row1Ref);
+      calculateAndSetDistance(row2Ref);
+      calculateAndSetDistance(row3Ref);
+    };
+
+    // Initial calculation - use requestAnimationFrame to ensure DOM is ready
+    const initAnimation = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          updateAll();
+        });
+      });
+    };
+
+    const timer = setTimeout(initAnimation, 100);
+
+    // Recalculate on window resize
+    const handleResize = () => {
+      updateAll();
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const ItemBox = ({ item }: { item: PerfectForItem }) => (
-    <div className='bg-white/80 backdrop-blur-md rounded-full p-4 shadow-layered transition-all duration-500 transform hover:scale-105 flex items-center justify-center min-h-[60px] md:min-h-[80px] flex-shrink-0 min-w-[180px] md:min-w-0'>
-      <p className='font-bold text-xs md:text-lg text-black text-center flex items-center gap-2 whitespace-nowrap'>
+    <div className='bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-layered transition-all duration-500 transform hover:scale-105 flex items-center justify-center flex-shrink-0 w-fit'>
+      <p className='font-bold text-sm md:text-lg text-black text-center flex items-center gap-2 whitespace-nowrap'>
         <span className='text-base md:text-3xl'>{item.emoji}</span>
         <span>{item.name}</span>
       </p>
@@ -36,16 +97,26 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
   );
 
   return (
-    <div className='space-y-6 overflow-hidden'>
+    <div className='space-y-8 overflow-hidden'>
       {/* Row 1 - Scrolls right */}
-      <div className='overflow-hidden px-6'>
-        <div className='flex gap-6 animate-scroll-right'>
+      <div className='relative overflow-hidden px-6 pb-4'>
+        <div
+          className='absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
+          style={{
+            background:
+              "linear-gradient(to right, rgb(225, 255, 91), transparent)",
+          }}
+        ></div>
+        <div
+          className='absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
+          style={{
+            background:
+              "linear-gradient(to left, rgb(225, 255, 91), transparent)",
+          }}
+        ></div>
+        <div ref={row1Ref} className='flex gap-8 animate-scroll-right'>
           {row1Items.map((item, index) => (
-            <div
-              key={`row1-${index}`}
-              className='flex-shrink-0'
-              style={{ width: "max(140px, calc((100% - 3rem) / 3))" }}
-            >
+            <div key={`row1-${index}`} className='flex-shrink-0'>
               <ItemBox item={item} />
             </div>
           ))}
@@ -53,14 +124,24 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
       </div>
 
       {/* Row 2 - Scrolls left */}
-      <div className='overflow-hidden px-6'>
-        <div className='flex gap-6 animate-scroll-left'>
+      <div className='relative overflow-hidden px-6 pb-4'>
+        <div
+          className='absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
+          style={{
+            background:
+              "linear-gradient(to right, rgb(225, 255, 91), transparent)",
+          }}
+        ></div>
+        <div
+          className='absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
+          style={{
+            background:
+              "linear-gradient(to left, rgb(225, 255, 91), transparent)",
+          }}
+        ></div>
+        <div ref={row2Ref} className='flex gap-8 animate-scroll-left'>
           {row2Items.map((item, index) => (
-            <div
-              key={`row2-${index}`}
-              className='flex-shrink-0'
-              style={{ width: "max(140px, calc((100% - 3rem) / 3))" }}
-            >
+            <div key={`row2-${index}`} className='flex-shrink-0'>
               <ItemBox item={item} />
             </div>
           ))}
@@ -68,14 +149,24 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
       </div>
 
       {/* Row 3 - Scrolls right */}
-      <div className='overflow-hidden px-6'>
-        <div className='flex gap-6 animate-scroll-right'>
+      <div className='relative overflow-hidden px-6 pb-4'>
+        <div
+          className='absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
+          style={{
+            background:
+              "linear-gradient(to right, rgb(225, 255, 91), transparent)",
+          }}
+        ></div>
+        <div
+          className='absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
+          style={{
+            background:
+              "linear-gradient(to left, rgb(225, 255, 91), transparent)",
+          }}
+        ></div>
+        <div ref={row3Ref} className='flex gap-8 animate-scroll-right'>
           {row3Items.map((item, index) => (
-            <div
-              key={`row3-${index}`}
-              className='flex-shrink-0'
-              style={{ width: "max(140px, calc((100% - 3rem) / 3))" }}
-            >
+            <div key={`row3-${index}`} className='flex-shrink-0'>
               <ItemBox item={item} />
             </div>
           ))}
