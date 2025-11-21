@@ -110,7 +110,7 @@ export function Navigation() {
                 window.location.href = "/";
               }
             }}
-            className='text-xl md:text-2xl text-black transition-colors font-groen flex-shrink-0'
+            className='text-2xl md:text-3xl text-black transition-colors font-groen flex-shrink-0'
           >
             spot
           </Link>
@@ -144,7 +144,7 @@ export function Navigation() {
           <button
             type='button'
             onClick={handleScrollToTop}
-            className='hidden sm:inline-flex items-center rounded-full bg-black px-4 py-1.5 text-xs md:text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-2'
+            className='hidden sm:inline-flex items-center rounded-full bg-black px-5 py-2 text-sm md:text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-2'
           >
             Download app
           </button>

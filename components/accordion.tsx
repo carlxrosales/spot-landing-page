@@ -25,11 +25,9 @@ function AccordionItem({
     >
       <button
         onClick={onToggle}
-        className='w-full text-left p-8 flex items-center justify-between gap-4 focus:outline-none rounded-3xl'
+        className='w-full text-left p-4 flex items-center justify-between gap-4 focus:outline-none rounded-3xl'
       >
-        <h3 className='text-xl text-black font-black flex-1'>
-          {question}
-        </h3>
+        <h3 className='text-base font-bold flex-1'>{question}</h3>
         <div
           className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-neon-pink/10 text-neon-pink transition-transform duration-500 ${
             isOpen ? "rotate-180" : ""
@@ -55,8 +53,8 @@ function AccordionItem({
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className='px-8 pb-8 pt-0'>
-          <p className='text-lg text-black/90 leading-relaxed'>{answer}</p>
+        <div className='px-4 pb-4 pt-0'>
+          <p className='text-sm text-black/90 leading-relaxed'>{answer}</p>
         </div>
       </div>
     </div>
@@ -75,7 +73,7 @@ export function Accordion({ items }: AccordionProps) {
   };
 
   return (
-    <div className='space-y-6'>
+    <div className='space-y-8'>
       {items.map((item, index) => (
         <AccordionItem
           key={index}

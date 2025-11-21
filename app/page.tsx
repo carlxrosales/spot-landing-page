@@ -12,7 +12,7 @@ export default function Home() {
             <h1 className='text-7xl md:text-9xl text-black font-groen leading-tight'>
               spot
             </h1>
-            <p className='text-3xl md:text-5xl text-black font-bold -mt-2'>
+            <p className='text-3xl md:text-5xl text-black font-bold -mt-2 opacity-80'>
               find places that match ur vibe
             </p>
           </div>
@@ -38,7 +38,7 @@ export default function Home() {
               alt='Spot app preview'
               width={300}
               height={600}
-              className='h-auto max-w-[300px] md:max-w-[400px]'
+              className='h-auto max-w-[300px] md:max-w-[600px]'
               priority
               unoptimized
             />
@@ -73,7 +73,7 @@ export default function Home() {
                 Choose your mood, purpose, or aesthetic
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
                 <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
                   <Image
@@ -109,7 +109,7 @@ export default function Home() {
                 your vibe
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex justify-center items-center pb-6'>
                 <div className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
                   <Image
@@ -135,7 +135,7 @@ export default function Home() {
                 Right to go, left to skip
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
                 <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
                   <Image
@@ -174,7 +174,7 @@ export default function Home() {
                 Waze with one tap
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
                 <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
                   <Image
@@ -209,7 +209,7 @@ export default function Home() {
                 Keep your favorites and send them to friends
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex justify-center items-center pb-6'>
                 <div className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
                   <Image
