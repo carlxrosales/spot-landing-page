@@ -11,7 +11,7 @@ export function Navigation() {
     { href: "/help", label: "Help" },
     { href: "/terms", label: "Terms" },
     { href: "/privacy", label: "Privacy" },
-    { href: "/zone", label: "Zone" },
+    { href: "/zones", label: "Zones" },
   ];
 
   return (

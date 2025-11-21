@@ -4,11 +4,13 @@ export default function Terms() {
   return (
     <PageLayout>
       <div className="max-w-4xl mx-auto space-y-8">
-        <h1 className="text-5xl md:text-6xl font-bold text-black text-center font-groen">
+        <h1 className="text-5xl md:text-6xl text-black text-center font-groen">
           Terms of Service
         </h1>
 
-        <div className="bg-white/50 backdrop-blur-sm rounded-lg p-8 border-2 border-black space-y-6 text-black">
+        <div className="relative bg-white/85 backdrop-blur-md rounded-3xl p-10 md:p-16 shadow-xl space-y-8 text-black">
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-pink/5 via-transparent to-neon-green/5"></div>
+          <div className="relative space-y-8">
           <section>
             <p className="text-sm text-gray mb-6">
               Last updated: {new Date().toLocaleDateString()}
@@ -16,7 +18,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">1. Acceptance of Terms</h2>
+            <h2 className="text-2xl mb-4 font-groen">1. Acceptance of Terms</h2>
             <p className="text-lg mb-4">
               By accessing and using spot ("the App"), you accept and agree to be bound by the
               terms and provision of this agreement. If you do not agree to abide by the above,
@@ -25,7 +27,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">2. Use License</h2>
+            <h2 className="text-2xl mb-4 font-groen">2. Use License</h2>
             <p className="text-lg mb-4">
               Permission is granted to temporarily download one copy of spot for personal,
               non-commercial transitory viewing only. This is the grant of a license, not a
@@ -41,25 +43,26 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">3. User Accounts</h2>
+            <h2 className="text-2xl mb-4 font-groen">3. User Accounts</h2>
             <p className="text-lg mb-4">
-              You are responsible for maintaining the confidentiality of your account and password.
-              You agree to accept responsibility for all activities that occur under your account
-              or password.
+              spot does not require user accounts. You can use the App without creating an account. 
+              If you choose to contact us via email, you are responsible for maintaining the 
+              confidentiality of your email communications.
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">4. Location Services</h2>
+            <h2 className="text-2xl mb-4 font-groen">4. Location Services</h2>
             <p className="text-lg mb-4">
               spot uses location services to provide you with relevant place recommendations.
-              By using the App, you consent to the collection and use of your location data as
-              described in our Privacy Policy.
+              By using the App, you consent to the processing of your location data as
+              described in our Privacy Policy. <strong>Your location data is processed temporarily 
+              and is not stored.</strong>
             </p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">5. Content and Data</h2>
+            <h2 className="text-2xl mb-4 font-groen">5. Content and Data</h2>
             <p className="text-lg mb-4">
               The App provides information about places, including reviews and descriptions
               sourced from third-party services. We do not guarantee the accuracy, completeness,
@@ -68,7 +71,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">6. Prohibited Uses</h2>
+            <h2 className="text-2xl mb-4 font-groen">6. Prohibited Uses</h2>
             <p className="text-lg mb-4">
               You may not use spot:
             </p>
@@ -81,7 +84,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">7. Disclaimer</h2>
+            <h2 className="text-2xl mb-4 font-groen">7. Disclaimer</h2>
             <p className="text-lg mb-4">
               The materials on spot are provided on an 'as is' basis. spot makes no warranties,
               expressed or implied, and hereby disclaims and negates all other warranties including
@@ -92,7 +95,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">8. Limitations</h2>
+            <h2 className="text-2xl mb-4 font-groen">8. Limitations</h2>
             <p className="text-lg mb-4">
               In no event shall spot or its suppliers be liable for any damages (including, without
               limitation, damages for loss of data or profit, or due to business interruption)
@@ -103,7 +106,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">9. Revisions</h2>
+            <h2 className="text-2xl mb-4 font-groen">9. Revisions</h2>
             <p className="text-lg mb-4">
               spot may revise these terms of service at any time without notice. By using this App
               you are agreeing to be bound by the then current version of these terms of service.
@@ -111,7 +114,7 @@ export default function Terms() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold mb-4 font-groen">10. Contact Information</h2>
+            <h2 className="text-2xl mb-4 font-groen">10. Contact Information</h2>
             <p className="text-lg mb-4">
               If you have any questions about these Terms of Service, please contact us at{" "}
               <a href="mailto:hey@carlrosales.com" className="text-neon-pink hover:underline">
@@ -120,6 +123,7 @@ export default function Terms() {
               .
             </p>
           </section>
+          </div>
         </div>
       </div>
     </PageLayout>
