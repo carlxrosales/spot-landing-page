@@ -66,20 +66,28 @@ interface AccordionProps {
 }
 
 export function Accordion({ items }: AccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
 
   const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setOpenIndices((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
   };
 
   return (
-    <div className='space-y-8'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
       {items.map((item, index) => (
         <AccordionItem
           key={index}
           question={item.question}
           answer={item.answer}
-          isOpen={openIndex === index}
+          isOpen={openIndices.has(index)}
           onToggle={() => handleToggle(index)}
         />
       ))}

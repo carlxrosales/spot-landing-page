@@ -1,5 +1,4 @@
 import { PageLayout } from "@/components/page-layout";
-import { Accordion } from "@/components/accordion";
 import { PerfectForCarousel } from "@/components/perfect-for-carousel";
 import Image from "next/image";
 
@@ -257,36 +256,44 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FAQ */}
-        <section id='faq' className='space-y-6 max-w-4xl mx-auto'>
-          <h2 className='text-4xl text-black font-groen text-center'>
-            What the FAQ?
-          </h2>
-          <Accordion
-            items={[
-              {
-                question: "How often is the place data updated?",
-                answer:
-                  "We update our place database monthly to ensure you have access to the latest information, reviews, and new venues. So you'll always be in the loop about what's new and trending! 🔄",
-              },
-              {
-                question: "What locations does spot cover?",
-                answer:
-                  "spot uses your location to find places near you. We cover restaurants, cafes, venues, and other establishments that have at least 2 reviews and a 2.5+ star rating. Basically anywhere that's worth checking out! 📍",
-              },
-              {
-                question: "Is spot free to use?",
-                answer:
-                  "Yes, spot is completely free to download and use - no cap! We help you discover amazing places that match your preferences at no cost. Zero hidden fees, just good vibes. ✨",
-              },
-              {
-                question: "How do I share a place I like?",
-                answer:
-                  "After swiping right on a place, you can share it with friends through the built-in sharing feature, which includes spot branding for easy discovery. Perfect for when you find a spot that absolutely slaps! 🔥",
-              },
-            ]}
-          />
-        </section>
+        {/* Footer */}
+        <footer className='border-t border-black/10 pt-8 pb-12'>
+          <div className='max-w-4xl mx-auto px-4 md:px-8'>
+            <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-8'>
+              {/* Logo and Copyright */}
+              <div className='flex flex-col'>
+                <h1 className='text-4xl md:text-5xl text-black font-groen leading-tight'>
+                  spot
+                </h1>
+                <p className='text-sm text-black/60 mt-2'>
+                  © All rights reserved
+                </p>
+              </div>
+
+              {/* Links */}
+              <div className='flex flex-wrap gap-6 md:gap-8'>
+                <a
+                  href='#'
+                  className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
+                >
+                  Terms
+                </a>
+                <a
+                  href='#'
+                  className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
+                >
+                  Help
+                </a>
+                <a
+                  href='#'
+                  className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
+                >
+                  Privacy
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </PageLayout>
   );
