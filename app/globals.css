@@ -66,3 +66,21 @@ body {
   animation: scroll-left 15s ease-in-out infinite alternate;
   will-change: transform;
 }
+
+/* Mapbox popup styling */
+.mapbox-popup .mapboxgl-popup-content {
+  border-radius: 12px;
+  padding: 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.mapbox-popup .mapboxgl-popup-close-button {
+  font-size: 20px;
+  padding: 4px 8px;
+  color: #666;
+}
+
+.mapbox-popup .mapboxgl-popup-close-button:hover {
+  color: #000;
+}

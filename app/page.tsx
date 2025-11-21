@@ -1,6 +1,142 @@
+"use client";
+
 import { PageLayout } from "@/components/page-layout";
 import { PerfectForCarousel } from "@/components/perfect-for-carousel";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import type { City } from "@/components/philippines-map";
+
+// Dynamically import the map component to avoid SSR issues with mapbox-gl
+const PhilippinesMap = dynamic(
+  () =>
+    import("@/components/philippines-map").then((mod) => ({
+      default: mod.PhilippinesMap,
+    })),
+  {
+    ssr: false,
+    loading: () => (
+      <div className='h-[600px] flex items-center justify-center'>
+        Loading map...
+      </div>
+    ),
+  }
+);
+
+// Philippine cities where spot is available
+const philippineCities: City[] = [
+  {
+    id: "indang",
+    name: "Indang",
+    latitude: 14.1986,
+    longitude: 120.8767,
+    description: "Cavite",
+    spotted: 45,
+  },
+  {
+    id: "tagaytay",
+    name: "Tagaytay",
+    latitude: 14.1003,
+    longitude: 120.9332,
+    description: "Cavite - Popular tourist destination",
+    spotted: 128,
+  },
+  {
+    id: "manila",
+    name: "Manila",
+    latitude: 14.5995,
+    longitude: 120.9842,
+    description: "Capital city of the Philippines",
+    spotted: 523,
+  },
+  {
+    id: "caloocan",
+    name: "Caloocan",
+    latitude: 14.6546,
+    longitude: 120.9842,
+    description: "Metro Manila",
+    spotted: 312,
+  },
+  {
+    id: "makati",
+    name: "Makati",
+    latitude: 14.5547,
+    longitude: 121.0244,
+    description: "Metro Manila - Business district",
+    spotted: 456,
+  },
+  {
+    id: "malabon",
+    name: "Malabon",
+    latitude: 14.6567,
+    longitude: 120.9569,
+    description: "Metro Manila",
+    spotted: 189,
+  },
+  {
+    id: "mandaluyong",
+    name: "Mandaluyong",
+    latitude: 14.5794,
+    longitude: 121.0359,
+    description: "Metro Manila",
+    spotted: 267,
+  },
+  {
+    id: "marikina",
+    name: "Marikina",
+    latitude: 14.6507,
+    longitude: 121.1029,
+    description: "Metro Manila - Shoe capital",
+    spotted: 234,
+  },
+  {
+    id: "pasay",
+    name: "Pasay",
+    latitude: 14.5378,
+    longitude: 121.0014,
+    description: "Metro Manila",
+    spotted: 298,
+  },
+  {
+    id: "quezon-city",
+    name: "Quezon City",
+    latitude: 14.676,
+    longitude: 121.0437,
+    description: "Metro Manila - Largest city in Metro Manila",
+    spotted: 678,
+  },
+  {
+    id: "taguig",
+    name: "Taguig",
+    latitude: 14.5176,
+    longitude: 121.0509,
+    description: "Metro Manila - BGC area",
+    spotted: 412,
+  },
+  {
+    id: "valenzuela",
+    name: "Valenzuela",
+    latitude: 14.7004,
+    longitude: 120.983,
+    description: "Metro Manila",
+    spotted: 156,
+  },
+  {
+    id: "baguio",
+    name: "Baguio",
+    latitude: 16.4023,
+    longitude: 120.596,
+    description: "Benguet - Summer capital of the Philippines",
+    spotted: 289,
+  },
+  {
+    id: "trece-martires",
+    name: "Trece Martires",
+    latitude: 14.2833,
+    longitude: 120.8667,
+    description: "Cavite - Capital of Cavite province",
+    spotted: 67,
+  },
+];
 
 export default function Home() {
   return (
@@ -246,15 +382,91 @@ export default function Home() {
 
         {/* Zones */}
         <section id='zones' className='space-y-8'>
-          <h2 className='text-4xl md:text-6xl text-black text-center font-groen'>
-            Zones
-          </h2>
-          <div className='relative bg-white/80 backdrop-blur-md rounded-3xl p-12 shadow-lg max-w-4xl mx-auto'>
-            <p className='text-xl md:text-2xl text-black/90 text-center leading-relaxed'>
-              Coming soon...
+          <div className='text-center'>
+            <h2 className='text-4xl md:text-6xl text-black font-groen mb-4'>
+              Zones
+            </h2>
+            <p className='text-xl md:text-2xl text-black/80 max-w-3xl mx-auto mb-8'>
+              Explore cities in the Philippines that have been searched by spot.
+            </p>
+          </div>
+          <div className='relative bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-lg max-w-7xl mx-auto'>
+            {process.env.NEXT_PUBLIC_MAPBOX_TOKEN ? (
+              <PhilippinesMap
+                cities={philippineCities}
+                mapboxToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
+              />
+            ) : (
+              <div className='h-[600px] flex items-center justify-center'>
+                <p className='text-xl text-gray'>
+                  Please add NEXT_PUBLIC_MAPBOX_TOKEN to your environment
+                  variables
+                </p>
+              </div>
+            )}
+          </div>
+          <div className='text-center'>
+            <p className='text-lg text-black/70'>
+              Click on the markers to learn more about each city
             </p>
           </div>
         </section>
+
+        <div className='pt-8'>
+          <div className='bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-lg border border-white/20 max-w-6xl mx-auto'>
+            <div className='flex flex-col md:flex-row items-center gap-8 md:gap-12'>
+              {/* Left side - Text and buttons */}
+              <div className='flex-1 space-y-6 text-center md:text-left'>
+                <h3 className='text-3xl md:text-4xl font-bold text-black'>
+                  Ready to Find Your Spot?
+                </h3>
+                <div className='space-y-3'>
+                  <div className='flex items-center gap-3 justify-center md:justify-start'>
+                    <span className='text-2xl'>✓</span>
+                    <p className='text-lg text-black/80'>
+                      Seamless place discovery experience
+                    </p>
+                  </div>
+                  <div className='flex items-center gap-3 justify-center md:justify-start'>
+                    <span className='text-2xl'>✓</span>
+                    <p className='text-lg text-black/80'>
+                      Faster and more efficient
+                    </p>
+                  </div>
+                </div>
+                <div className='flex flex-col sm:flex-row gap-4 justify-center md:justify-start'>
+                  <Image
+                    src='/app-store-button.png'
+                    alt='Download on the App Store'
+                    width={180}
+                    height={60}
+                    className='h-auto rounded-3xl bg-neon-green'
+                  />
+                  <Image
+                    src='/google-play-button.png'
+                    alt='Get it on Google Play'
+                    width={180}
+                    height={60}
+                    className='h-auto rounded-3xl bg-neon-green'
+                  />
+                </div>
+              </div>
+
+              {/* Right side - Phone image */}
+              <div className='flex-shrink-0'>
+                <Image
+                  src='/spot.png?v=2'
+                  alt='Spot app preview'
+                  width={300}
+                  height={600}
+                  className='h-auto max-w-[250px] md:max-w-[400px]'
+                  priority
+                  unoptimized
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Footer */}
         <footer className='border-t border-black/10 pt-8 pb-12'>
