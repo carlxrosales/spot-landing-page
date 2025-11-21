@@ -1,10 +1,11 @@
 import { PageLayout } from "@/components/page-layout";
-import Link from "next/link";
+import { Accordion } from "@/components/accordion";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <PageLayout>
-      <div className='space-y-20 md:space-y-32'>
+      <div className='space-y-24 md:space-y-40'>
         {/* Hero Section */}
         <section className='text-center space-y-8'>
           <h1 className='text-7xl md:text-9xl text-black font-groen leading-tight'>
@@ -17,26 +18,36 @@ export default function Home() {
             spot makes it stupid easy to find exactly what you're in the mood
             for
           </p>
-          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center pt-8'>
-            <Link
-              href='https://apps.apple.com'
-              className='group relative px-10 py-5 bg-black text-neon-green rounded-2xl font-bold text-lg hover:bg-neon-pink hover:text-white transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-neon-pink/40 overflow-hidden'
-            >
-              <div className='absolute inset-0 bg-gradient-to-r from-neon-pink/0 to-neon-green/0 group-hover:from-neon-pink/20 group-hover:to-neon-green/20 transition-all duration-500'></div>
-              <span className='relative'>Download on App Store</span>
-            </Link>
-            <Link
-              href='https://play.google.com'
-              className='group relative px-10 py-5 bg-black text-neon-green rounded-2xl font-bold text-lg hover:bg-neon-pink hover:text-white transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-neon-pink/40 overflow-hidden'
-            >
-              <div className='absolute inset-0 bg-gradient-to-r from-neon-pink/0 to-neon-green/0 group-hover:from-neon-pink/20 group-hover:to-neon-green/20 transition-all duration-500'></div>
-              <span className='relative'>Get it on Google Play</span>
-            </Link>
+          <div className='flex flex-col items-center gap-10 pt-8'>
+            <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
+              <Image
+                src='/app-store-button.png'
+                alt='Download on the App Store'
+                width={180}
+                height={60}
+                className='h-auto'
+              />
+              <Image
+                src='/google-play-button.png'
+                alt='Get it on Google Play'
+                width={180}
+                height={60}
+                className='h-auto'
+              />
+            </div>
+            <Image
+              src='/spot-iphone-graphic.png'
+              alt='Preview of the spot app'
+              width={520}
+              height={1040}
+              className='w-full max-w-sm sm:max-w-md md:max-w-lg h-auto'
+              priority
+            />
           </div>
         </section>
 
         {/* Why We Love Spot */}
-        <section className='space-y-8'>
+        <section id='why-we-love-spot' className='space-y-8 -mt-12 md:-mt-20'>
           <h2 className='text-4xl md:text-6xl text-black text-center font-groen'>
             Why we love spot
           </h2>
@@ -163,21 +174,74 @@ export default function Home() {
             Download spot and find places that match your vibe
           </h2>
           <div className='flex flex-col sm:flex-row gap-4 justify-center items-center pt-4'>
-            <Link
-              href='https://apps.apple.com'
-              className='group relative px-10 py-5 bg-neon-pink text-white rounded-2xl font-bold text-lg hover:bg-black hover:text-neon-green transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-neon-pink/40 overflow-hidden'
-            >
-              <div className='absolute inset-0 bg-gradient-to-r from-black/0 to-neon-green/0 group-hover:from-black/20 group-hover:to-neon-green/20 transition-all duration-500'></div>
-              <span className='relative'>Download on App Store</span>
-            </Link>
-            <Link
-              href='https://play.google.com'
-              className='group relative px-10 py-5 bg-neon-pink text-white rounded-2xl font-bold text-lg hover:bg-black hover:text-neon-green transition-all duration-500 transform hover:scale-105 shadow-xl hover:shadow-2xl hover:shadow-neon-pink/40 overflow-hidden'
-            >
-              <div className='absolute inset-0 bg-gradient-to-r from-black/0 to-neon-green/0 group-hover:from-black/20 group-hover:to-neon-green/20 transition-all duration-500'></div>
-              <span className='relative'>Get it on Google Play</span>
-            </Link>
+            <Image
+              src='/app-store-button.png'
+              alt='Download on the App Store'
+              width={180}
+              height={60}
+              className='h-auto'
+            />
+            <Image
+              src='/google-play-button.png'
+              alt='Get it on Google Play'
+              width={180}
+              height={60}
+              className='h-auto'
+            />
           </div>
+        </section>
+
+        {/* Zones */}
+        <section id='zones' className='space-y-8'>
+          <h2 className='text-4xl md:text-6xl text-black text-center font-groen'>
+            Zones
+          </h2>
+          <div className='relative bg-white/80 backdrop-blur-md rounded-3xl p-12 shadow-lg max-w-4xl mx-auto'>
+            <p className='text-xl md:text-2xl text-black/90 text-center leading-relaxed'>
+              Coming soon...
+            </p>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id='faq' className='space-y-6 max-w-4xl mx-auto'>
+          <h2 className='text-4xl text-black font-groen text-center'>
+            What the FAQ?
+          </h2>
+          <Accordion
+            items={[
+              {
+                question: "How does spot match me with places?",
+                answer:
+                  "spot uses AI-powered vector embeddings and similarity search to match your preferences with places based on their reviews and descriptions. You answer a few questions about your preferences, and we find places that align with your vibe. It's basically like having a friend who knows exactly what you're looking for! 🎯",
+              },
+              {
+                question: "How do I use the swipe interface?",
+                answer:
+                  "Swipe left to skip a place, or swipe right to save it. You can then share saved places or open them in Maps or Waze for directions. It's super intuitive - just like swiping through stories! 👆",
+              },
+              {
+                question: "How often is the place data updated?",
+                answer:
+                  "We update our place database monthly to ensure you have access to the latest information, reviews, and new venues. So you'll always be in the loop about what's new and trending! 🔄",
+              },
+              {
+                question: "What locations does spot cover?",
+                answer:
+                  "spot uses your location to find places near you. We cover restaurants, cafes, venues, and other establishments that have at least 2 reviews and a 2.5+ star rating. Basically anywhere that's worth checking out! 📍",
+              },
+              {
+                question: "Is spot free to use?",
+                answer:
+                  "Yes, spot is completely free to download and use - no cap! We help you discover amazing places that match your preferences at no cost. Zero hidden fees, just good vibes. ✨",
+              },
+              {
+                question: "How do I share a place I like?",
+                answer:
+                  "After swiping right on a place, you can share it with friends through the built-in sharing feature, which includes spot branding for easy discovery. Perfect for when you find a spot that absolutely slaps! 🔥",
+              },
+            ]}
+          />
         </section>
       </div>
     </PageLayout>

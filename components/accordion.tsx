@@ -27,7 +27,7 @@ function AccordionItem({
         onClick={onToggle}
         className='w-full text-left p-8 flex items-center justify-between gap-4 focus:outline-none rounded-3xl'
       >
-        <h3 className='text-xl text-black font-comic font-black flex-1'>
+        <h3 className='text-xl text-black font-black flex-1'>
           {question}
         </h3>
         <div
