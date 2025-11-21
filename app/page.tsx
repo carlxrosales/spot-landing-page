@@ -25,118 +25,258 @@ export default function Home() {
                 alt='Download on the App Store'
                 width={180}
                 height={60}
-                className='h-auto'
+                className='h-auto rounded-3xl bg-neon-green'
               />
               <Image
                 src='/google-play-button.png'
                 alt='Get it on Google Play'
                 width={180}
                 height={60}
-                className='h-auto'
+                className='h-auto rounded-3xl bg-neon-green'
               />
             </div>
-            <Image
-              src='/spot-iphone-graphic.png'
-              alt='Preview of the spot app'
-              width={520}
-              height={1040}
-              className='w-full max-w-sm sm:max-w-md md:max-w-lg h-auto'
-              priority
-            />
           </div>
         </section>
 
-        {/* Why We Love Spot */}
-        <section id='why-we-love-spot' className='space-y-8 -mt-12 md:-mt-20'>
-          <h2 className='text-4xl md:text-6xl text-black text-center font-groen'>
-            Why we love spot
-          </h2>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12'>
-            <div className='group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-neon-pink/30'>
-              <div className='absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-pink/0 to-neon-pink/0 group-hover:from-neon-pink/5 group-hover:to-transparent transition-all duration-500'></div>
-              <div className='relative'>
-                <div className='text-5xl mb-5 transform group-hover:scale-110 transition-transform duration-300'>
-                  👆
-                </div>
-                <h3 className='text-2xl text-black mb-3 font-groen'>
-                  Swipe for places
-                </h3>
-                <p className='text-black/80 text-lg leading-relaxed'>
-                  Right to go, left to skip
-                </p>
-              </div>
-            </div>
-            <div className='group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-neon-pink/30'>
-              <div className='absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-pink/0 to-neon-pink/0 group-hover:from-neon-pink/5 group-hover:to-transparent transition-all duration-500'></div>
-              <div className='relative'>
-                <div className='text-5xl mb-5 transform group-hover:scale-110 transition-transform duration-300'>
-                  ✨
-                </div>
-                <h3 className='text-2xl text-black mb-3 font-groen'>
-                  Find by vibe
-                </h3>
-                <p className='text-black/80 text-lg leading-relaxed'>
-                  Choose your mood, purpose, or aesthetic
-                </p>
-              </div>
-            </div>
-            <div className='group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-neon-pink/30'>
-              <div className='absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-pink/0 to-neon-pink/0 group-hover:from-neon-pink/5 group-hover:to-transparent transition-all duration-500'></div>
-              <div className='relative'>
-                <div className='text-5xl mb-5 transform group-hover:scale-110 transition-transform duration-300'>
-                  📍
-                </div>
-                <h3 className='text-2xl text-black mb-3 font-groen'>
-                  Location-based picks
-                </h3>
-                <p className='text-black/80 text-lg leading-relaxed'>
-                  Discover spots within your selected range
-                </p>
-              </div>
-            </div>
-            <div className='group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-neon-pink/30'>
-              <div className='absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-pink/0 to-neon-pink/0 group-hover:from-neon-pink/5 group-hover:to-transparent transition-all duration-500'></div>
-              <div className='relative'>
-                <div className='text-5xl mb-5 transform group-hover:scale-110 transition-transform duration-300'>
-                  🗺️
-                </div>
-                <h3 className='text-2xl text-black mb-3 font-groen'>
-                  Instant directions
-                </h3>
-                <p className='text-black/80 text-lg leading-relaxed'>
-                  Open in Maps or Waze with one tap
-                </p>
-              </div>
-            </div>
-            <div className='group relative bg-white/80 backdrop-blur-md rounded-3xl p-8 shadow-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-neon-pink/30'>
-              <div className='absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-pink/0 to-neon-pink/0 group-hover:from-neon-pink/5 group-hover:to-transparent transition-all duration-500'></div>
-              <div className='relative'>
-                <div className='text-5xl mb-5 transform group-hover:scale-110 transition-transform duration-300'>
-                  💾
-                </div>
-                <h3 className='text-2xl text-black mb-3 font-groen'>
-                  Save and share
-                </h3>
-                <p className='text-black/80 text-lg leading-relaxed'>
-                  Keep your favorites and send them to friends
-                </p>
-              </div>
-            </div>
+        {/* How It Works */}
+        <section id='how-it-works' className='space-y-16 md:space-y-24'>
+          <div className='text-center space-y-4'>
+            <h2 className='text-5xl md:text-6xl text-black font-groen'>
+              How it works
+            </h2>
+            <p className='text-2xl md:text-2xl text-black/80 max-w-3xl mx-auto'>
+              Simple steps to find your perfect spot that match your vibe
+            </p>
           </div>
         </section>
 
-        {/* What You Get */}
-        <section className='space-y-8'>
-          <div className='relative bg-white/85 backdrop-blur-md rounded-3xl p-10 md:p-16 shadow-xl hover:shadow-2xl hover:shadow-neon-pink/20 transition-all duration-500'>
-            <div className='absolute inset-0 rounded-3xl bg-gradient-to-br from-neon-pink/5 via-transparent to-neon-green/5'></div>
-            <div className='relative'>
-              <h2 className='text-3xl md:text-5xl text-black mb-6 font-groen text-center'>
-                Get a personalized stream
-              </h2>
-              <p className='text-xl md:text-2xl text-black/90 text-center max-w-4xl mx-auto leading-relaxed'>
-                Get a personalized stream of cafés, restaurants, study spots,
-                hangout places, and more — all based on what you actually like.
+        <section
+          id='why-we-love-spot'
+          className='space-y-16 md:space-y-24 -mt-12 md:-mt-20'
+        >
+          {/* Find by vibe */}
+          <div className='space-y-8 max-w-6xl mx-auto'>
+            <div className='flex flex-col items-center space-y-4'>
+              <div className='text-6xl md:text-7xl mb-2'>✨</div>
+              <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
+                Find by vibe
+              </h3>
+              <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
+                Choose your mood, purpose, or aesthetic
               </p>
+            </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
+              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center'>
+                <div
+                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
+                  style={{
+                    boxShadow:
+                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
+                  }}
+                >
+                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
+                    <Image
+                      src='/vibe.jpeg'
+                      alt='Find by vibe screen 1'
+                      fill
+                      className='object-cover bg-neon-green'
+                      sizes='(max-width: 768px) 140px, 320px'
+                    />
+                  </div>
+                </div>
+                <div
+                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
+                  style={{
+                    boxShadow:
+                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
+                  }}
+                >
+                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
+                    <Image
+                      src='/vibe2.jpeg'
+                      alt='Find by vibe screen 2'
+                      fill
+                      className='object-cover bg-neon-green'
+                      sizes='(max-width: 768px) 140px, 320px'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* AI generates */}
+          <div className='space-y-8 max-w-6xl mx-auto'>
+            <div className='flex flex-col items-center space-y-4'>
+              <div className='text-6xl md:text-7xl mb-2'>🤖</div>
+              <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
+                AI generates
+              </h3>
+              <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
+                AI analyzes your preferences and finds perfect spots that match
+                your vibe
+              </p>
+            </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
+              <div className='flex justify-center items-center'>
+                <div
+                  className='w-full max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
+                  style={{
+                    boxShadow:
+                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
+                  }}
+                >
+                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
+                    <Image
+                      src='/finding.jpeg'
+                      alt='AI generates spots screen'
+                      fill
+                      className='object-cover bg-neon-green'
+                      sizes='(max-width: 768px) 140px, 320px'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Swipe for places */}
+          <div className='space-y-8 max-w-6xl mx-auto'>
+            <div className='flex flex-col items-center space-y-4'>
+              <div className='text-6xl md:text-7xl mb-2'>👆</div>
+              <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
+                Swipe for places
+              </h3>
+              <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
+                Right to go, left to skip
+              </p>
+            </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
+              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center'>
+                <div
+                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
+                  style={{
+                    boxShadow:
+                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
+                  }}
+                >
+                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
+                    <Image
+                      src='/swipe1.jpeg'
+                      alt='Swipe for places screen 1'
+                      fill
+                      className='object-cover bg-neon-green'
+                      sizes='(max-width: 768px) 140px, 320px'
+                    />
+                  </div>
+                </div>
+                <div
+                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
+                  style={{
+                    boxShadow:
+                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
+                  }}
+                >
+                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
+                    <Image
+                      src='/swipe2.jpeg'
+                      alt='Swipe for places screen 2'
+                      fill
+                      className='object-cover bg-neon-green'
+                      sizes='(max-width: 768px) 140px, 320px'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Location-based picks & Instant directions */}
+          <div className='space-y-8 max-w-6xl mx-auto'>
+            <div className='flex flex-col items-center space-y-4'>
+              <div className='flex items-center gap-4'>
+                <div className='text-6xl md:text-7xl mb-2'>📍</div>
+                <div className='text-6xl md:text-7xl mb-2'>🗺️</div>
+              </div>
+              <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
+                Location-based picks & Instant directions
+              </h3>
+              <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
+                Discover spots within your selected range and open in Maps or
+                Waze with one tap
+              </p>
+            </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
+              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center'>
+                <div
+                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
+                  style={{
+                    boxShadow:
+                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
+                  }}
+                >
+                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
+                    <Image
+                      src='/distance.jpeg'
+                      alt='Location-based distance selection screen'
+                      fill
+                      className='object-cover bg-neon-green'
+                      sizes='(max-width: 768px) 140px, 320px'
+                    />
+                  </div>
+                </div>
+                <div
+                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
+                  style={{
+                    boxShadow:
+                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
+                  }}
+                >
+                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
+                    <Image
+                      src='/description.jpeg'
+                      alt='Place description and directions screen'
+                      fill
+                      className='object-cover bg-neon-green'
+                      sizes='(max-width: 768px) 140px, 320px'
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Save and share */}
+          <div className='space-y-8 max-w-6xl mx-auto'>
+            <div className='flex flex-col items-center space-y-4'>
+              <div className='text-6xl md:text-7xl mb-2'>💾</div>
+              <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
+                Save and share
+              </h3>
+              <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
+                Keep your favorites and send them to friends
+              </p>
+            </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
+              <div className='flex justify-center items-center'>
+                <div
+                  className='w-full max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
+                  style={{
+                    boxShadow:
+                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
+                  }}
+                >
+                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
+                    <Image
+                      src='/share.jpeg'
+                      alt='Save and share screen'
+                      fill
+                      className='object-cover bg-neon-green'
+                      sizes='(max-width: 768px) 140px, 320px'
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -148,46 +288,37 @@ export default function Home() {
           </h2>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mt-12'>
             {[
-              "Food trips",
-              "Study sessions",
-              "Remote work",
-              "Coffee runs",
-              "Night outs",
-              "Date plans",
-              "Solo days",
-              "Exploring new areas",
+              { name: "Food trips", image: "/food-trips.jpeg" },
+              { name: "Study sessions", image: "/study-sessions.jpeg" },
+              { name: "Remote work", image: "/remote-work.jpeg" },
+              { name: "Coffee runs", image: "/coffee-runs.jpeg" },
+              { name: "Night outs", image: "/night-outs.jpeg" },
+              { name: "Date plans", image: "/date-plans.jpeg" },
+              { name: "Solo days", image: "/solo-days.jpeg" },
+              {
+                name: "Exploring new areas",
+                image: "/exploring-new-areas.jpeg",
+              },
             ].map((item) => (
               <div
-                key={item}
-                className='group relative bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-lg text-center hover:bg-gradient-to-br hover:from-neon-pink hover:to-neon-pink/80 hover:text-white transition-all duration-500 transform hover:scale-105 hover:shadow-xl hover:shadow-neon-pink/30'
+                key={item.name}
+                className='group relative bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:shadow-neon-pink/30 transition-all duration-500 transform hover:scale-105 aspect-square'
               >
-                <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-black/0 to-black/0 group-hover:from-black/10 group-hover:to-transparent transition-all duration-500'></div>
-                <p className='relative font-bold text-lg md:text-xl'>{item}</p>
+                <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-black/0 to-black/0 group-hover:from-black/10 group-hover:to-transparent transition-all duration-500 z-10'></div>
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  fill
+                  className='object-cover rounded-2xl'
+                  sizes='(max-width: 768px) 50vw, 25vw'
+                />
+                <div className='absolute inset-0 flex items-center justify-center z-20'>
+                  <p className='relative font-bold text-lg md:text-xl text-white drop-shadow-lg'>
+                    {item.name}
+                  </p>
+                </div>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className='text-center space-y-8 py-12'>
-          <h2 className='text-4xl md:text-6xl text-black font-groen'>
-            Download spot and find places that match your vibe
-          </h2>
-          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center pt-4'>
-            <Image
-              src='/app-store-button.png'
-              alt='Download on the App Store'
-              width={180}
-              height={60}
-              className='h-auto'
-            />
-            <Image
-              src='/google-play-button.png'
-              alt='Get it on Google Play'
-              width={180}
-              height={60}
-              className='h-auto'
-            />
           </div>
         </section>
 
