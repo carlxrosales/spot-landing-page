@@ -1,10 +1,12 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { PageLayout } from "@/components/page-layout";
 import { PerfectForCarousel } from "@/components/perfect-for-carousel";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import type { City } from "@/components/philippines-map";
+import { getCitiesWithCounts } from "@/lib/cities";
 
 // Dynamically import the map component to avoid SSR issues with mapbox-gl
 const PhilippinesMap = dynamic(
@@ -22,123 +24,32 @@ const PhilippinesMap = dynamic(
   }
 );
 
-// Philippine cities where spot is available
-const philippineCities: City[] = [
-  {
-    id: "indang",
-    name: "Indang",
-    latitude: 14.1986,
-    longitude: 120.8767,
-    description: "Cavite",
-    spotted: 45,
-  },
-  {
-    id: "tagaytay",
-    name: "Tagaytay",
-    latitude: 14.1003,
-    longitude: 120.9332,
-    description: "Cavite - Popular tourist destination",
-    spotted: 128,
-  },
-  {
-    id: "manila",
-    name: "Manila",
-    latitude: 14.5995,
-    longitude: 120.9842,
-    description: "Capital city of the Philippines",
-    spotted: 523,
-  },
-  {
-    id: "caloocan",
-    name: "Caloocan",
-    latitude: 14.6546,
-    longitude: 120.9842,
-    description: "Metro Manila",
-    spotted: 312,
-  },
-  {
-    id: "makati",
-    name: "Makati",
-    latitude: 14.5547,
-    longitude: 121.0244,
-    description: "Metro Manila - Business district",
-    spotted: 456,
-  },
-  {
-    id: "malabon",
-    name: "Malabon",
-    latitude: 14.6567,
-    longitude: 120.9569,
-    description: "Metro Manila",
-    spotted: 189,
-  },
-  {
-    id: "mandaluyong",
-    name: "Mandaluyong",
-    latitude: 14.5794,
-    longitude: 121.0359,
-    description: "Metro Manila",
-    spotted: 267,
-  },
-  {
-    id: "marikina",
-    name: "Marikina",
-    latitude: 14.6507,
-    longitude: 121.1029,
-    description: "Metro Manila - Shoe capital",
-    spotted: 234,
-  },
-  {
-    id: "pasay",
-    name: "Pasay",
-    latitude: 14.5378,
-    longitude: 121.0014,
-    description: "Metro Manila",
-    spotted: 298,
-  },
-  {
-    id: "quezon-city",
-    name: "Quezon City",
-    latitude: 14.676,
-    longitude: 121.0437,
-    description: "Metro Manila - Largest city in Metro Manila",
-    spotted: 678,
-  },
-  {
-    id: "taguig",
-    name: "Taguig",
-    latitude: 14.5176,
-    longitude: 121.0509,
-    description: "Metro Manila - BGC area",
-    spotted: 412,
-  },
-  {
-    id: "valenzuela",
-    name: "Valenzuela",
-    latitude: 14.7004,
-    longitude: 120.983,
-    description: "Metro Manila",
-    spotted: 156,
-  },
-  {
-    id: "baguio",
-    name: "Baguio",
-    latitude: 16.4023,
-    longitude: 120.596,
-    description: "Benguet - Summer capital of the Philippines",
-    spotted: 289,
-  },
-  {
-    id: "trece-martires",
-    name: "Trece Martires",
-    latitude: 14.2833,
-    longitude: 120.8667,
-    description: "Cavite - Capital of Cavite province",
-    spotted: 67,
-  },
-];
-
 export default function Home() {
+  const [philippineCities, setPhilippineCities] = useState<City[]>([]);
+  const [isLoadingCities, setIsLoadingCities] = useState(true);
+
+  // Fetch cities data from Supabase
+  useEffect(() => {
+    async function fetchCities() {
+      try {
+        setIsLoadingCities(true);
+        const cities = await getCitiesWithCounts();
+        console.log("Fetched cities with counts:", cities);
+        // Log Marikina specifically for debugging
+        const marikina = cities.find((c) => c.id === "marikina");
+        if (marikina) {
+          console.log("Marikina data:", marikina);
+        }
+        setPhilippineCities(cities);
+      } catch (error) {
+        console.error("Error fetching cities:", error);
+      } finally {
+        setIsLoadingCities(false);
+      }
+    }
+
+    fetchCities();
+  }, []);
   return (
     <PageLayout>
       <div className='space-y-24 md:space-y-40'>
@@ -391,7 +302,11 @@ export default function Home() {
             </p>
           </div>
           <div className='relative bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-lg max-w-7xl mx-auto'>
-            {process.env.NEXT_PUBLIC_MAPBOX_TOKEN ? (
+            {isLoadingCities ? (
+              <div className='h-[600px] flex items-center justify-center'>
+                <p className='text-xl text-gray'>Loading cities data...</p>
+              </div>
+            ) : process.env.NEXT_PUBLIC_MAPBOX_TOKEN ? (
               <PhilippinesMap
                 cities={philippineCities}
                 mapboxToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
