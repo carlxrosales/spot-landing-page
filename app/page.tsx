@@ -8,12 +8,14 @@ export default function Home() {
       <div className='space-y-24 md:space-y-40'>
         {/* Hero Section */}
         <section className='text-center space-y-8'>
-          <h1 className='text-7xl md:text-9xl text-black font-groen leading-tight'>
-            spot
-          </h1>
-          <p className='text-3xl md:text-5xl text-black font-groen'>
-            find places that match ur vibe
-          </p>
+          <div className='space-y-0'>
+            <h1 className='text-7xl md:text-9xl text-black font-groen leading-tight'>
+              spot
+            </h1>
+            <p className='text-3xl md:text-5xl text-black font-bold -mt-2'>
+              find places that match ur vibe
+            </p>
+          </div>
           <div className='flex flex-col items-center gap-10 pt-8'>
             <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
               <Image
@@ -31,6 +33,15 @@ export default function Home() {
                 className='h-auto rounded-3xl bg-neon-green'
               />
             </div>
+            <Image
+              src='/spot.png'
+              alt='Spot app preview'
+              width={300}
+              height={600}
+              className='h-auto max-w-[300px] md:max-w-[400px]'
+              priority
+              unoptimized
+            />
           </div>
         </section>
 
