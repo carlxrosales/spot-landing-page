@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Map, { Marker, Popup } from "react-map-gl/mapbox";
+import type { MapRef } from "react-map-gl/mapbox";
 
 // Example city data structure - replace with your scraped data
 export interface City {
@@ -23,6 +24,7 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const mapRef = useRef<MapRef>(null);
   const [viewState, setViewState] = useState({
     longitude: 121.774, // Manila center
     latitude: 14.5995,
@@ -46,13 +48,68 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
     setViewState({
       longitude: city.longitude,
       latitude: city.latitude,
-      zoom: 12,
+      zoom: 11,
     });
   };
 
   const filteredCities = cities.filter((city) =>
     city.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const hideNonCityLabels = useCallback(() => {
+    if (!mapRef.current) return;
+
+    const map = mapRef.current.getMap();
+    const style = map.getStyle();
+
+    if (!style || !style.layers) return;
+
+    // Hide label layers that are not city labels
+    style.layers.forEach((layer) => {
+      if (layer.type === "symbol" && layer.id) {
+        const layerId = layer.id.toLowerCase();
+
+        // Keep city/place labels, hide everything else
+        const isCityLabel =
+          layerId.includes("place-city") ||
+          layerId.includes("place-town") ||
+          layerId.includes("city") ||
+          (layerId.includes("place") && !layerId.includes("place-other"));
+
+        // Hide non-city labels
+        if (!isCityLabel && layerId.includes("label")) {
+          try {
+            map.setLayoutProperty(layer.id, "visibility", "none");
+          } catch (e) {
+            // Layer might not exist or already hidden
+          }
+        }
+      }
+    });
+  }, []);
+
+  // Hide non-city labels when map style loads or changes
+  useEffect(() => {
+    if (mapLoaded && mapRef.current) {
+      const map = mapRef.current.getMap();
+
+      const hideLabels = () => {
+        hideNonCityLabels();
+      };
+
+      // Hide labels when style loads
+      map.on("style.load", hideLabels);
+
+      // Also hide immediately if style is already loaded
+      if (map.isStyleLoaded()) {
+        hideLabels();
+      }
+
+      return () => {
+        map.off("style.load", hideLabels);
+      };
+    }
+  }, [mapLoaded, hideNonCityLabels]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -126,10 +183,17 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
       </div>
 
       <Map
+        ref={mapRef}
         key={mapStyle}
         {...viewState}
         onMove={(evt) => setViewState(evt.viewState)}
-        onLoad={() => setMapLoaded(true)}
+        onLoad={() => {
+          setMapLoaded(true);
+          // Hide non-city labels after a short delay to ensure style is loaded
+          setTimeout(() => {
+            hideNonCityLabels();
+          }, 100);
+        }}
         mapboxAccessToken={mapboxToken}
         style={{ width: "100%", height: "100%" }}
         mapStyle={mapStyle}
