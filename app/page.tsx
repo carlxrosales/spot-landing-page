@@ -14,10 +14,6 @@ export default function Home() {
           <p className='text-3xl md:text-5xl text-black font-groen'>
             find places that match ur vibe
           </p>
-          <p className='text-xl md:text-2xl text-black max-w-3xl mx-auto font-medium leading-relaxed'>
-            spot makes it stupid easy to find exactly what you're in the mood
-            for
-          </p>
           <div className='flex flex-col items-center gap-10 pt-8'>
             <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
               <Image
@@ -45,7 +41,8 @@ export default function Home() {
               How it works
             </h2>
             <p className='text-2xl md:text-2xl text-black/80 max-w-3xl mx-auto'>
-              Simple steps to find your perfect spot that match your vibe
+              spot makes it stupid easy to find exactly what you're in the mood
+              for
             </p>
           </div>
         </section>
