@@ -18,7 +18,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">1. Introduction</h2>
+            <h2 className="text-2xl mb-4 font-bold">1. Introduction</h2>
             <p className="text-lg mb-4">
               spot ("we", "our", or "us") is committed to protecting your privacy. This Privacy
               Policy explains how we process your information when you use our mobile application.
@@ -27,13 +27,13 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">2. Information We Process</h2>
+            <h2 className="text-2xl mb-4 font-bold">2. Information We Process</h2>
             <p className="text-lg mb-4">
               spot processes the following information temporarily to provide you with recommendations. 
               <strong> This information is not stored or collected:</strong>
             </p>
             
-            <h3 className="text-xl mb-3 mt-4 font-groen">2.1 Information You Provide</h3>
+            <h3 className="text-xl mb-3 mt-4 font-bold">2.1 Information You Provide</h3>
             <p className="text-lg mb-4">
               We temporarily process information that you provide through the App, including:
             </p>
@@ -42,7 +42,7 @@ export default function Privacy() {
               <li>Communications with us, such as support requests (only stored if you contact us via email)</li>
             </ul>
 
-            <h3 className="text-xl mb-3 mt-4 font-groen">2.2 Location Data</h3>
+            <h3 className="text-xl mb-3 mt-4 font-bold">2.2 Location Data</h3>
             <p className="text-lg mb-4">
               spot requires access to your location to provide relevant place recommendations.
               We process your location data temporarily (with your permission) to:
@@ -58,7 +58,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">3. How We Process Your Information</h2>
+            <h2 className="text-2xl mb-4 font-bold">3. How We Process Your Information</h2>
             <p className="text-lg mb-4">
               We process your information temporarily to:
             </p>
@@ -73,7 +73,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">4. Information Sharing</h2>
+            <h2 className="text-2xl mb-4 font-bold">4. Information Sharing</h2>
             <p className="text-lg mb-4">
               Since we do not store your information, there is no stored data to share. We do not sell, 
               trade, or share any personal information because we do not collect or store it.
@@ -88,7 +88,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">5. Data Storage and Retention</h2>
+            <h2 className="text-2xl mb-4 font-bold">5. Data Storage and Retention</h2>
             <p className="text-lg mb-4">
               <strong>We do not store any of your personal information.</strong> All information is processed 
               temporarily in real-time to generate recommendations and is immediately discarded after processing. 
@@ -97,7 +97,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">6. Your Rights</h2>
+            <h2 className="text-2xl mb-4 font-bold">6. Your Rights</h2>
             <p className="text-lg mb-4">
               Since we do not store your information, there is no stored data to access, correct, or delete. 
               You have full control over the information you provide through the App, and you can stop using 
@@ -113,7 +113,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">7. Children's Privacy</h2>
+            <h2 className="text-2xl mb-4 font-bold">7. Children's Privacy</h2>
             <p className="text-lg mb-4">
               spot is not intended for children under the age of 13. Since we do not collect or store 
               information, we do not knowingly process information from children under 13. If you believe 
@@ -122,7 +122,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">8. Changes to This Privacy Policy</h2>
+            <h2 className="text-2xl mb-4 font-bold">8. Changes to This Privacy Policy</h2>
             <p className="text-lg mb-4">
               We may update this Privacy Policy from time to time. We will notify you of any
               changes by posting the new Privacy Policy on this page and updating the "Last
@@ -132,7 +132,7 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="text-2xl mb-4 font-groen">9. Contact Us</h2>
+            <h2 className="text-2xl mb-4 font-bold">9. Contact Us</h2>
             <p className="text-lg mb-4">
               If you have any questions about this Privacy Policy, please contact us at{" "}
               <a href="mailto:hey@carlrosales.com" className="text-neon-pink hover:underline">

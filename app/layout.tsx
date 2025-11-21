@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "spot - find places that match your vibe",
-  description: "Find places that match your vibe through an AI-powered matching system",
+  title: "spot: discover & share places",
+  description: "find places that match ur vibe",
 };
 
 export default function RootLayout({
@@ -12,10 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
-        {children}
-      </body>
+    <html lang='en'>
+      <body className='antialiased'>{children}</body>
     </html>
   );
 }
