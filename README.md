@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# spot Landing Page
+
+Landing page for the spot mobile app - find places that match your vibe.
+
+## Overview
+
+This is a Next.js landing page that matches the styling and branding of the spot mobile app, featuring:
+- Animated sparkle background
+- Groen font family
+- Neon green and pink color scheme
+- Responsive design
+
+## Pages
+
+- **Landing Page** (`/`) - Main landing page with app description and download links
+- **Help** (`/help`) - Contact information and FAQs
+- **Terms** (`/terms`) - Terms of Service
+- **Privacy** (`/privacy`) - Privacy Policy
+- **Zone** (`/zone`) - Coming soon page
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS v4
+- **Language**: TypeScript
+- **Font**: Groen (custom font)
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+spot-landing/
+├── app/
+│   ├── page.tsx          # Landing page
+│   ├── help/
+│   │   └── page.tsx      # Help page
+│   ├── terms/
+│   │   └── page.tsx      # Terms of Service
+│   ├── privacy/
+│   │   └── page.tsx      # Privacy Policy
+│   ├── zone/
+│   │   └── page.tsx      # Zone page
+│   ├── layout.tsx        # Root layout
+│   └── globals.css       # Global styles and theme
+├── components/
+│   ├── animated-background.tsx  # Animated sparkle background
+│   ├── navigation.tsx           # Navigation component
+│   └── page-layout.tsx          # Page layout wrapper
+└── public/
+    └── fonts/
+        └── Groen.ttf     # Custom font file
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Styling
 
-## Deploy on Vercel
+The landing page uses the same color palette and font as the spot mobile app:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Neon Green**: `rgb(225, 255, 91)` - Primary background
+- **Neon Pink**: `rgb(255, 45, 155)` - Accent color
+- **Black**: `rgb(30, 30, 30)` - Text color
+- **White**: `rgb(248, 248, 248)` - Light text/backgrounds
+- **Gray**: `rgb(100, 100, 100)` - Secondary text
+- **Font**: Groen (custom font)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Build
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+To start the production server:
+
+```bash
+npm start
+```
+
+## License
+
+Private project - All rights reserved

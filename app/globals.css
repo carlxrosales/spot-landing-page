@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "Groen";
+  src: url("/fonts/Groen.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-neon-green: rgb(225, 255, 91);
+  --color-white: rgb(248, 248, 248);
+  --color-neon-pink: rgb(255, 45, 155);
+  --color-gray: rgb(100, 100, 100);
+  --color-black: rgb(30, 30, 30);
+  --color-shadow: rgba(240, 46, 170, 0.4);
+  --font-family-groen: "Groen", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(225, 255, 91);
+  color: rgb(30, 30, 30);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.font-groen {
+  font-family: "Groen", sans-serif;
 }
