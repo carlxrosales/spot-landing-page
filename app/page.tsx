@@ -1,5 +1,6 @@
 import { PageLayout } from "@/components/page-layout";
 import { Accordion } from "@/components/accordion";
+import { PerfectForCarousel } from "@/components/perfect-for-carousel";
 import Image from "next/image";
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
               />
             </div>
             <Image
-              src='/spot.png'
+              src='/spot.png?v=2'
               alt='Spot app preview'
               width={300}
               height={600}
@@ -162,12 +163,9 @@ export default function Home() {
           {/* Location-based picks & Instant directions */}
           <div className='space-y-8 max-w-6xl mx-auto'>
             <div className='flex flex-col items-center space-y-4'>
-              <div className='flex items-center gap-4'>
-                <div className='text-6xl md:text-7xl mb-2'>📍</div>
-                <div className='text-6xl md:text-7xl mb-2'>🗺️</div>
-              </div>
+              <div className='text-6xl md:text-7xl mb-2'>🗺️</div>
               <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
-                Location-based picks & Instant directions
+                Location-based picks
               </h3>
               <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
                 Discover spots within your selected range and open in Maps or
@@ -226,43 +224,24 @@ export default function Home() {
         </section>
 
         {/* Perfect For */}
-        <section className='space-y-8'>
+        <section className='space-y-8 max-w-4xl mx-auto'>
           <h2 className='text-4xl md:text-6xl text-black text-center font-groen'>
             Perfect for
           </h2>
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-4 mt-12'>
-            {[
-              { name: "Food trips", image: "/food-trips.jpeg" },
-              { name: "Study sessions", image: "/study-sessions.jpeg" },
-              { name: "Remote work", image: "/remote-work.jpeg" },
-              { name: "Coffee runs", image: "/coffee-runs.jpeg" },
-              { name: "Night outs", image: "/night-outs.jpeg" },
-              { name: "Date plans", image: "/date-plans.jpeg" },
-              { name: "Solo days", image: "/solo-days.jpeg" },
-              {
-                name: "Exploring new areas",
-                image: "/exploring-new-areas.jpeg",
-              },
-            ].map((item) => (
-              <div
-                key={item.name}
-                className='group relative bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:shadow-neon-pink/30 transition-all duration-500 transform hover:scale-105 aspect-square'
-              >
-                <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-black/0 to-black/0 group-hover:from-black/10 group-hover:to-transparent transition-all duration-500 z-10'></div>
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  className='object-cover rounded-2xl'
-                  sizes='(max-width: 768px) 50vw, 25vw'
-                />
-                <div className='absolute inset-0 flex items-center justify-center z-20'>
-                  <p className='relative font-bold text-lg md:text-xl text-white drop-shadow-lg'>
-                    {item.name}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className='mt-12'>
+            <PerfectForCarousel
+              items={[
+                { name: "Food trips", emoji: "🍔" },
+                { name: "Study sessions", emoji: "📚" },
+                { name: "Remote work", emoji: "💻" },
+                { name: "Coffee runs", emoji: "☕" },
+                { name: "Night outs", emoji: "🌙" },
+                { name: "Date plans", emoji: "💕" },
+                { name: "Solo days", emoji: "🧘" },
+                { name: "Exploring new areas", emoji: "🗺️" },
+                { name: "Weekend adventures", emoji: "🎒" },
+              ]}
+            />
           </div>
         </section>
 
