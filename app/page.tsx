@@ -65,41 +65,25 @@ export default function Home() {
                 Choose your mood, purpose, or aesthetic
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
-              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center'>
-                <div
-                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
-                  style={{
-                    boxShadow:
-                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
-                  }}
-                >
-                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
-                    <Image
-                      src='/vibe.jpeg'
-                      alt='Find by vibe screen 1'
-                      fill
-                      className='object-cover bg-neon-green'
-                      sizes='(max-width: 768px) 140px, 320px'
-                    />
-                  </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                  <Image
+                    src='/vibe.png'
+                    alt='Find by vibe screen 1'
+                    fill
+                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+                    sizes='(max-width: 768px) 140px, 320px'
+                  />
                 </div>
-                <div
-                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
-                  style={{
-                    boxShadow:
-                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
-                  }}
-                >
-                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
-                    <Image
-                      src='/vibe2.jpeg'
-                      alt='Find by vibe screen 2'
-                      fill
-                      className='object-cover bg-neon-green'
-                      sizes='(max-width: 768px) 140px, 320px'
-                    />
-                  </div>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                  <Image
+                    src='/vibe2.png'
+                    alt='Find by vibe screen 2'
+                    fill
+                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+                    sizes='(max-width: 768px) 140px, 320px'
+                  />
                 </div>
               </div>
             </div>
@@ -117,24 +101,16 @@ export default function Home() {
                 your vibe
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
-              <div className='flex justify-center items-center'>
-                <div
-                  className='w-full max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
-                  style={{
-                    boxShadow:
-                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
-                  }}
-                >
-                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
-                    <Image
-                      src='/finding.jpeg'
-                      alt='AI generates spots screen'
-                      fill
-                      className='object-cover bg-neon-green'
-                      sizes='(max-width: 768px) 140px, 320px'
-                    />
-                  </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+              <div className='flex justify-center items-center pb-6'>
+                <div className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                  <Image
+                    src='/finding.png'
+                    alt='AI generates spots screen'
+                    fill
+                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+                    sizes='(max-width: 768px) 140px, 320px'
+                  />
                 </div>
               </div>
             </div>
@@ -151,41 +127,25 @@ export default function Home() {
                 Right to go, left to skip
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
-              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center'>
-                <div
-                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
-                  style={{
-                    boxShadow:
-                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
-                  }}
-                >
-                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
-                    <Image
-                      src='/swipe1.jpeg'
-                      alt='Swipe for places screen 1'
-                      fill
-                      className='object-cover bg-neon-green'
-                      sizes='(max-width: 768px) 140px, 320px'
-                    />
-                  </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                  <Image
+                    src='/swipe1.png'
+                    alt='Swipe for places screen 1'
+                    fill
+                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+                    sizes='(max-width: 768px) 140px, 320px'
+                  />
                 </div>
-                <div
-                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
-                  style={{
-                    boxShadow:
-                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
-                  }}
-                >
-                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
-                    <Image
-                      src='/swipe2.jpeg'
-                      alt='Swipe for places screen 2'
-                      fill
-                      className='object-cover bg-neon-green'
-                      sizes='(max-width: 768px) 140px, 320px'
-                    />
-                  </div>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                  <Image
+                    src='/swipe2.png'
+                    alt='Swipe for places screen 2'
+                    fill
+                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+                    sizes='(max-width: 768px) 140px, 320px'
+                  />
                 </div>
               </div>
             </div>
@@ -206,41 +166,25 @@ export default function Home() {
                 Waze with one tap
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
-              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center'>
-                <div
-                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
-                  style={{
-                    boxShadow:
-                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
-                  }}
-                >
-                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
-                    <Image
-                      src='/distance.jpeg'
-                      alt='Location-based distance selection screen'
-                      fill
-                      className='object-cover bg-neon-green'
-                      sizes='(max-width: 768px) 140px, 320px'
-                    />
-                  </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+              <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                  <Image
+                    src='/distance.png'
+                    alt='Location-based distance selection screen'
+                    fill
+                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+                    sizes='(max-width: 768px) 140px, 320px'
+                  />
                 </div>
-                <div
-                  className='w-1/2 max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
-                  style={{
-                    boxShadow:
-                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
-                  }}
-                >
-                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
-                    <Image
-                      src='/description.jpeg'
-                      alt='Place description and directions screen'
-                      fill
-                      className='object-cover bg-neon-green'
-                      sizes='(max-width: 768px) 140px, 320px'
-                    />
-                  </div>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                  <Image
+                    src='/description.png'
+                    alt='Place description and directions screen'
+                    fill
+                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+                    sizes='(max-width: 768px) 140px, 320px'
+                  />
                 </div>
               </div>
             </div>
@@ -257,24 +201,16 @@ export default function Home() {
                 Keep your favorites and send them to friends
               </p>
             </div>
-            <div className='bg-white/70 backdrop-blur-xl rounded-3xl p-4 md:p-8 shadow-lg border border-white/20 mt-8'>
-              <div className='flex justify-center items-center'>
-                <div
-                  className='w-full max-w-[140px] md:max-w-xs bg-neon-green backdrop-blur-md rounded-3xl aspect-[9/19] relative px-1.5 py-6'
-                  style={{
-                    boxShadow:
-                      "rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px",
-                  }}
-                >
-                  <div className='absolute inset-x-[6px] inset-y-[12px] rounded-3xl overflow-hidden bg-neon-green'>
-                    <Image
-                      src='/share.jpeg'
-                      alt='Save and share screen'
-                      fill
-                      className='object-cover bg-neon-green'
-                      sizes='(max-width: 768px) 140px, 320px'
-                    />
-                  </div>
+            <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8'>
+              <div className='flex justify-center items-center pb-6'>
+                <div className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                  <Image
+                    src='/share.png'
+                    alt='Save and share screen'
+                    fill
+                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+                    sizes='(max-width: 768px) 140px, 320px'
+                  />
                 </div>
               </div>
             </div>
