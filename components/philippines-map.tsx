@@ -26,13 +26,32 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const mapRef = useRef<MapRef>(null);
   const [viewState, setViewState] = useState({
-    longitude: 121.774, // Manila center
-    latitude: 14.5995,
-    zoom: 5.5,
+    longitude: 120.98, // Metro Manila area center
+    latitude: 14.5,
+    zoom: 10.5, // Zoomed in to show Metro Manila and surrounding cities
+    bearing: 190, // Rotation in degrees (45 = northeast up)
+    pitch: 80, // Tilt/3D perspective (0 = flat, 60 = maximum tilt)
   });
 
-  // Map style - change this to update the map design
-  const mapStyle = "mapbox://styles/imsohungry/cmi9dhn3x002n01r9hiytcabs";
+  // Map styles - day and night versions
+  // If you're seeing the wrong style, the URLs might be swapped - check console logs
+  const dayStyle = "mapbox://styles/imsohungry/cmi9egfcc002c01si3f902r14";
+  const nightStyle = "mapbox://styles/imsohungry/cmi9f8r8r002r01r96xn6cyj8";
+
+  // Function to determine if it's day or night based on current time
+  const getTimeOfDay = () => {
+    const now = new Date();
+    const hour = now.getHours();
+    const isDay = hour >= 6 && hour < 18;
+    console.log(`⏰ Current hour: ${hour}, Is day: ${isDay}`);
+    // Consider 6 AM to 6 PM as day time
+    return isDay ? "day" : "night";
+  };
+
+  // State for current map style based on time of day
+  const [mapStyle, setMapStyle] = useState(() => {
+    return getTimeOfDay() === "day" ? dayStyle : nightStyle;
+  });
 
   // Philippines center coordinates
   const philippinesCenter = {
@@ -49,6 +68,8 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
       longitude: city.longitude,
       latitude: city.latitude,
       zoom: 11,
+      bearing: viewState.bearing, // Preserve current rotation
+      pitch: viewState.pitch, // Preserve current tilt
     });
   };
 
@@ -56,60 +77,155 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
     city.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const hideNonCityLabels = useCallback(() => {
-    if (!mapRef.current) return;
+  const addCustomCityLabels = useCallback(() => {
+    if (!mapRef.current || !mapLoaded) return;
 
     const map = mapRef.current.getMap();
-    const style = map.getStyle();
 
-    if (!style || !style.layers) return;
+    // Wait for style to be fully loaded
+    if (!map.isStyleLoaded()) {
+      return;
+    }
 
-    // Hide label layers that are not city labels
-    style.layers.forEach((layer) => {
-      if (layer.type === "symbol" && layer.id) {
-        const layerId = layer.id.toLowerCase();
+    // Don't add labels if no cities
+    if (!cities || cities.length === 0) return;
 
-        // Keep city/place labels, hide everything else
-        const isCityLabel =
-          layerId.includes("place-city") ||
-          layerId.includes("place-town") ||
-          layerId.includes("city") ||
-          (layerId.includes("place") && !layerId.includes("place-other"));
+    // Create GeoJSON source with city points
+    const cityFeatures = cities.map((city) => ({
+      type: "Feature" as const,
+      geometry: {
+        type: "Point" as const,
+        coordinates: [city.longitude, city.latitude],
+      },
+      properties: {
+        name: city.name,
+      },
+    }));
 
-        // Hide non-city labels
-        if (!isCityLabel && layerId.includes("label")) {
-          try {
-            map.setLayoutProperty(layer.id, "visibility", "none");
-          } catch (e) {
-            // Layer might not exist or already hidden
-          }
+    try {
+      const source = map.getSource("custom-city-labels");
+
+      if (source) {
+        // Update existing source data instead of removing/re-adding
+        (source as any).setData({
+          type: "FeatureCollection",
+          features: cityFeatures,
+        });
+      } else {
+        // Add source if it doesn't exist
+        map.addSource("custom-city-labels", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: cityFeatures,
+          },
+        });
+
+        // Add text layer for city labels (only if it doesn't exist)
+        if (!map.getLayer("custom-city-labels")) {
+          map.addLayer({
+            id: "custom-city-labels",
+            type: "symbol",
+            source: "custom-city-labels",
+            layout: {
+              "text-field": ["get", "name"],
+              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+              "text-size": 14,
+              "text-anchor": "top",
+              "text-offset": [0, 0.6],
+              "text-allow-overlap": true,
+              "text-ignore-placement": true,
+              "text-optional": false,
+            },
+            paint: {
+              "text-color": "#000000",
+              "text-halo-color": "#ffffff",
+              "text-halo-width": 2,
+            },
+          });
         }
       }
-    });
-  }, []);
+    } catch (error) {
+      console.error("Error adding city labels:", error);
+    }
+  }, [cities, mapLoaded]);
 
-  // Hide non-city labels when map style loads or changes
+  // Add custom labels for cities with markers
+  // Note: This works best with a Mapbox style that has labels disabled
   useEffect(() => {
     if (mapLoaded && mapRef.current) {
       const map = mapRef.current.getMap();
 
-      const hideLabels = () => {
-        hideNonCityLabels();
+      const addLabels = () => {
+        // Add custom labels after a short delay to ensure style is ready
+        setTimeout(() => {
+          addCustomCityLabels();
+        }, 300);
       };
 
-      // Hide labels when style loads
-      map.on("style.load", hideLabels);
+      // Add labels when style loads (only once)
+      map.once("style.load", addLabels);
 
-      // Also hide immediately if style is already loaded
+      // Also add immediately if style is already loaded
       if (map.isStyleLoaded()) {
-        hideLabels();
+        addLabels();
       }
 
       return () => {
-        map.off("style.load", hideLabels);
+        map.off("style.load", addLabels);
       };
     }
-  }, [mapLoaded, hideNonCityLabels]);
+  }, [mapLoaded, addCustomCityLabels]);
+
+  // Update labels when cities array changes
+  useEffect(() => {
+    if (mapLoaded && mapRef.current) {
+      const map = mapRef.current.getMap();
+      if (map.isStyleLoaded()) {
+        addCustomCityLabels();
+      }
+    }
+  }, [cities, mapLoaded, addCustomCityLabels]);
+
+  // Update map style based on time of day (real-time)
+  useEffect(() => {
+    const updateStyleBasedOnTime = () => {
+      const timeOfDay = getTimeOfDay();
+      const newStyle = timeOfDay === "day" ? dayStyle : nightStyle;
+
+      console.log(`🔍 Debug - Time of day: ${timeOfDay}`);
+      console.log(`🔍 Debug - Selected style:`, newStyle);
+      console.log(`🔍 Debug - Day style URL:`, dayStyle);
+      console.log(`🔍 Debug - Night style URL:`, nightStyle);
+      console.log(`🔍 Debug - Current mapStyle:`, mapStyle);
+
+      // Only update if style actually changed
+      if (newStyle !== mapStyle) {
+        console.log(`🔄 Switching to ${timeOfDay} style:`, newStyle);
+        setMapStyle(newStyle);
+      } else {
+        console.log(`✅ Style already correct (${timeOfDay})`);
+      }
+    };
+
+    // Update immediately
+    updateStyleBasedOnTime();
+
+    // Check every 5 minutes to update style if time of day changed
+    const interval = setInterval(updateStyleBasedOnTime, 5 * 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, [mapStyle, dayStyle, nightStyle]);
+
+  // Log current style on mount for verification
+  useEffect(() => {
+    const timeOfDay = getTimeOfDay();
+    const currentStyle = timeOfDay === "day" ? dayStyle : nightStyle;
+    console.log(`🗺️ Map initialized with ${timeOfDay} style:`, currentStyle);
+    console.log(`📅 Current time: ${new Date().toLocaleTimeString()}`);
+    console.log(`☀️ Day style: ${dayStyle}`);
+    console.log(`🌙 Night style: ${nightStyle}`);
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -189,10 +305,6 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
         onMove={(evt) => setViewState(evt.viewState)}
         onLoad={() => {
           setMapLoaded(true);
-          // Hide non-city labels after a short delay to ensure style is loaded
-          setTimeout(() => {
-            hideNonCityLabels();
-          }, 100);
         }}
         mapboxAccessToken={mapboxToken}
         style={{ width: "100%", height: "100%" }}
@@ -223,7 +335,8 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
           <Popup
             longitude={selectedCity.longitude}
             latitude={selectedCity.latitude}
-            anchor='top'
+            anchor='bottom'
+            offset={[0, -10]}
             onClose={() => setSelectedCity(null)}
             closeButton={true}
             closeOnClick={false}

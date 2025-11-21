@@ -79,8 +79,16 @@ body {
   font-size: 20px;
   padding: 4px 8px;
   color: #666;
+  outline: none !important;
+  border: none !important;
 }
 
 .mapbox-popup .mapboxgl-popup-close-button:hover {
   color: #000;
+}
+
+.mapbox-popup .mapboxgl-popup-close-button:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
