@@ -91,22 +91,18 @@ The landing page uses the same color palette and font as the spot mobile app:
 
 ## Environment Variables
 
-This project requires the following environment variables:
+This project requires the following environment variable:
 
 - `NEXT_PUBLIC_MAPBOX_TOKEN` - Your Mapbox access token (required for map functionality)
-- `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL (optional, for city data)
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anonymous/public key (optional, for city data)
 
 ### Local Development
 
 Create a `.env.local` file in the root directory:
 ```bash
 NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token_here
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
 ```
 
-Get your Supabase credentials from: https://app.supabase.com/ → Your Project → Settings → API
+Get your Mapbox token from: https://account.mapbox.com/access-tokens/
 
 ### Production Deployment
 
@@ -115,26 +111,22 @@ Get your Supabase credentials from: https://app.supabase.com/ → Your Project �
 #### Vercel
 1. Go to your project settings on Vercel
 2. Navigate to **Settings** → **Environment Variables**
-3. Add the following variables:
+3. Add the following variable:
    - `NEXT_PUBLIC_MAPBOX_TOKEN` - Your Mapbox token
-   - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL (if using Supabase)
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anon key (if using Supabase)
-4. Select all environments (Production, Preview, Development) for each variable
+4. Select all environments (Production, Preview, Development) for the variable
 5. Click **Save**
 6. Go to **Deployments** tab and click **Redeploy** on the latest deployment
 
 #### Netlify
 1. Go to your site settings on Netlify
 2. Navigate to **Site configuration** → **Environment variables**
-3. Add the following variables:
+3. Add the following variable:
    - `NEXT_PUBLIC_MAPBOX_TOKEN` - Your Mapbox token
-   - `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL (if using Supabase)
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anon key (if using Supabase)
 4. Click **Save**
 5. Go to **Deploys** tab and click **Trigger deploy** → **Deploy site**
 
 #### Other Platforms
-Add all three environment variables (`NEXT_PUBLIC_MAPBOX_TOKEN`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`) to your platform's environment variables configuration, then redeploy.
+Add the `NEXT_PUBLIC_MAPBOX_TOKEN` environment variable to your platform's environment variables configuration, then redeploy.
 
 ## Build
 

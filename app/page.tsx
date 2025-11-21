@@ -28,7 +28,7 @@ export default function Home() {
   const [philippineCities, setPhilippineCities] = useState<City[]>([]);
   const [isLoadingCities, setIsLoadingCities] = useState(true);
 
-  // Fetch cities data from Supabase
+  // Fetch cities data
   useEffect(() => {
     async function fetchCities() {
       try {
@@ -400,19 +400,19 @@ export default function Home() {
               {/* Links */}
               <div className='flex flex-wrap gap-6 md:gap-8'>
                 <a
-                  href='#'
+                  href='/terms'
                   className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
                 >
                   Terms
                 </a>
                 <a
-                  href='#'
+                  href='/help'
                   className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
                 >
                   Help
                 </a>
                 <a
-                  href='#'
+                  href='/privacy'
                   className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
                 >
                   Privacy

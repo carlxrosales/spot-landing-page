@@ -342,16 +342,18 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
             closeOnClick={false}
             className='mapbox-popup'
           >
-            <div className='p-2 text-center min-w-[200px] max-w-[200px]'>
+            <div className='p-4 text-center min-w-[200px] max-w-[200px]'>
               {selectedCity.spotted !== undefined && (
                 <div className='mb-2 pb-2 border-b border-gray-200'>
-                  <p className='text-xl text-black font-groen'>Spotted</p>
-                  <p className='text-base font-semibold text-black mt-1'>
+                  <p className='inline-block bg-neon-green rounded-full px-4 py-1 text-lg font-bold text-black font-groen mb-2'>
+                    spotted
+                  </p>
+                  <p className='text-base font-semibold text-black mt-1 mb-2'>
                     📍 {selectedCity.spotted.toLocaleString()} places
                   </p>
                 </div>
               )}
-              <h3 className='font-bold text-lg font-groen'>
+              <h3 className='font-bold text-lg text-black'>
                 {selectedCity.name}
               </h3>
               {selectedCity.description && (
