@@ -7,7 +7,7 @@ export function PageLayout({ children }: { children: React.ReactNode }) {
       <AnimatedBackground />
       <div className="relative z-10">
         <Navigation />
-        <main className="max-w-7xl mx-auto px-8 py-12">
+        <main className="max-w-7xl mx-auto px-6 md:px-8 py-8 md:py-16">
           {children}
         </main>
       </div>
