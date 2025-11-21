@@ -97,9 +97,9 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
   );
 
   return (
-    <div className='space-y-8 overflow-hidden'>
+    <div className='space-y-8 overflow-hidden pb-4'>
       {/* Row 1 - Scrolls right */}
-      <div className='relative overflow-hidden px-6 pb-4'>
+      <div className='relative px-6 pb-4'>
         <div
           className='absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
           style={{
@@ -124,7 +124,7 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
       </div>
 
       {/* Row 2 - Scrolls left */}
-      <div className='relative overflow-hidden px-6 pb-4'>
+      <div className='relative  px-6 pb-4'>
         <div
           className='absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
           style={{
@@ -149,7 +149,7 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
       </div>
 
       {/* Row 3 - Scrolls right */}
-      <div className='relative overflow-hidden px-6 pb-4'>
+      <div className='relative  px-6 pb-4'>
         <div
           className='absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none'
           style={{

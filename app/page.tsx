@@ -265,16 +265,6 @@ export default function Home() {
           <Accordion
             items={[
               {
-                question: "How does spot match me with places?",
-                answer:
-                  "spot uses AI-powered vector embeddings and similarity search to match your preferences with places based on their reviews and descriptions. You answer a few questions about your preferences, and we find places that align with your vibe. It's basically like having a friend who knows exactly what you're looking for! 🎯",
-              },
-              {
-                question: "How do I use the swipe interface?",
-                answer:
-                  "Swipe left to skip a place, or swipe right to save it. You can then share saved places or open them in Maps or Waze for directions. It's super intuitive - just like swiping through stories! 👆",
-              },
-              {
                 question: "How often is the place data updated?",
                 answer:
                   "We update our place database monthly to ensure you have access to the latest information, reviews, and new venues. So you'll always be in the loop about what's new and trending! 🔄",
