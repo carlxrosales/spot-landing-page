@@ -333,7 +333,7 @@ export default function Home() {
               {/* Left side - Text and buttons */}
               <div className='flex-1 space-y-6 text-center md:text-left'>
                 <h3 className='text-3xl md:text-4xl font-bold text-black'>
-                  Ready to Find Your Spot?
+                  Ready to Find Your Spot? Get the app now
                 </h3>
                 <div className='space-y-3'>
                   <div className='flex items-center gap-3 justify-center md:justify-start'>
