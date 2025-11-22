@@ -50,6 +50,62 @@ export default function Home() {
 
     fetchCities();
   }, []);
+
+  // Scroll-triggered animations
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+
+    const initAnimations = () => {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer?.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const elements = document.querySelectorAll(".fade-in-on-scroll");
+      elements.forEach((el) => {
+        // Check if element is already in viewport
+        const rect = el.getBoundingClientRect();
+        const windowHeight =
+          window.innerHeight || document.documentElement.clientHeight;
+        const isInView = rect.top < windowHeight && rect.bottom > 0;
+
+        if (isInView) {
+          // Add visible class with a small delay for smooth animation
+          setTimeout(() => {
+            el.classList.add("visible");
+          }, 50);
+        } else {
+          observer?.observe(el);
+        }
+      });
+    };
+
+    // Wait for DOM to be ready
+    const timeoutId = setTimeout(() => {
+      initAnimations();
+    }, 100);
+
+    // Also check on window load
+    window.addEventListener("load", initAnimations);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("load", initAnimations);
+      if (observer) {
+        const elements = document.querySelectorAll(".fade-in-on-scroll");
+        elements.forEach((el) => observer?.unobserve(el));
+      }
+    };
+  }, []);
   return (
     <PageLayout>
       <div className='space-y-24 md:space-y-40'>
@@ -59,7 +115,7 @@ export default function Home() {
             <h1 className='text-7xl md:text-9xl text-black font-groen leading-tight animate-breathe'>
               spot
             </h1>
-            <p className='text-3xl md:text-5xl text-black font-bold -mt-2 opacity-80'>
+            <p className='text-3xl md:text-5xl text-black font-bold -mt-2 opacity-80 animate-breathe'>
               find places that match ur vibe
             </p>
           </div>
@@ -70,14 +126,14 @@ export default function Home() {
                 alt='Download on the App Store'
                 width={180}
                 height={60}
-                className='h-auto rounded-3xl bg-neon-green'
+                className='h-auto rounded-3xl bg-neon-green scale-on-hover'
               />
               <Image
                 src='/google-play-button.png'
                 alt='Get it on Google Play'
                 width={180}
                 height={60}
-                className='h-auto rounded-3xl bg-neon-green'
+                className='h-auto rounded-3xl bg-neon-green scale-on-hover'
               />
             </div>
             <Image
@@ -85,7 +141,7 @@ export default function Home() {
               alt='Spot app preview'
               width={300}
               height={600}
-              className='h-auto max-w-[300px] md:max-w-[600px]'
+              className='h-auto max-w-[300px] md:max-w-[800px]'
               priority
               unoptimized
             />
@@ -93,7 +149,10 @@ export default function Home() {
         </section>
 
         {/* How It Works */}
-        <section id='how-it-works' className='space-y-16 md:space-y-24'>
+        <section
+          id='how-it-works'
+          className='space-y-16 md:space-y-24 fade-in-on-scroll'
+        >
           <div className='text-center space-y-4'>
             <h2 className='text-5xl md:text-6xl text-black font-groen'>
               How it works
@@ -110,9 +169,11 @@ export default function Home() {
           className='space-y-16 md:space-y-24 -mt-12 md:-mt-20'
         >
           {/* Find by vibe */}
-          <div className='space-y-8 max-w-6xl mx-auto'>
+          <div className='space-y-8 max-w-6xl mx-auto fade-in-on-scroll'>
             <div className='flex flex-col items-center space-y-4'>
-              <div className='text-6xl md:text-7xl mb-2'>✨</div>
+              <div className='text-6xl md:text-7xl mb-2 animate-floating'>
+                ✨
+              </div>
               <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
                 Find by vibe
               </h3>
@@ -131,7 +192,7 @@ export default function Home() {
                     sizes='(max-width: 768px) 140px, 320px'
                   />
                 </div>
-                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered scale-on-hover'>
                   <Image
                     src='/vibe2.png'
                     alt='Find by vibe screen 2'
@@ -145,9 +206,11 @@ export default function Home() {
           </div>
 
           {/* AI generates */}
-          <div className='space-y-8 max-w-6xl mx-auto'>
+          <div className='space-y-8 max-w-6xl mx-auto fade-in-on-scroll'>
             <div className='flex flex-col items-center space-y-4'>
-              <div className='text-6xl md:text-7xl mb-2'>🤖</div>
+              <div className='text-6xl md:text-7xl mb-2 animate-floating'>
+                🤖
+              </div>
               <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
                 AI generates
               </h3>
@@ -158,7 +221,7 @@ export default function Home() {
             </div>
             <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex justify-center items-center pb-6'>
-                <div className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                <div className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered scale-on-hover'>
                   <Image
                     src='/finding.png'
                     alt='AI generates spots screen'
@@ -172,9 +235,11 @@ export default function Home() {
           </div>
 
           {/* Swipe for places */}
-          <div className='space-y-8 max-w-6xl mx-auto'>
+          <div className='space-y-8 max-w-6xl mx-auto fade-in-on-scroll'>
             <div className='flex flex-col items-center space-y-4'>
-              <div className='text-6xl md:text-7xl mb-2'>👆</div>
+              <div className='text-6xl md:text-7xl mb-2 animate-floating'>
+                👆
+              </div>
               <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
                 Swipe for places
               </h3>
@@ -184,7 +249,7 @@ export default function Home() {
             </div>
             <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
-                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered scale-on-hover'>
                   <Image
                     src='/swipe1.png'
                     alt='Swipe for places screen 1'
@@ -193,7 +258,7 @@ export default function Home() {
                     sizes='(max-width: 768px) 140px, 320px'
                   />
                 </div>
-                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered scale-on-hover'>
                   <Image
                     src='/swipe2.png'
                     alt='Swipe for places screen 2'
@@ -207,9 +272,11 @@ export default function Home() {
           </div>
 
           {/* Location-based picks & Instant directions */}
-          <div className='space-y-8 max-w-6xl mx-auto'>
+          <div className='space-y-8 max-w-6xl mx-auto fade-in-on-scroll'>
             <div className='flex flex-col items-center space-y-4'>
-              <div className='text-6xl md:text-7xl mb-2'>🗺️</div>
+              <div className='text-6xl md:text-7xl mb-2 animate-floating'>
+                🗺️
+              </div>
               <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
                 Location-based picks
               </h3>
@@ -220,7 +287,7 @@ export default function Home() {
             </div>
             <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
-                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered scale-on-hover'>
                   <Image
                     src='/distance.png'
                     alt='Location-based distance selection screen'
@@ -229,7 +296,7 @@ export default function Home() {
                     sizes='(max-width: 768px) 140px, 320px'
                   />
                 </div>
-                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                <div className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered scale-on-hover'>
                   <Image
                     src='/description.png'
                     alt='Place description and directions screen'
@@ -243,9 +310,11 @@ export default function Home() {
           </div>
 
           {/* Save and share */}
-          <div className='space-y-8 max-w-6xl mx-auto'>
+          <div className='space-y-8 max-w-6xl mx-auto fade-in-on-scroll'>
             <div className='flex flex-col items-center space-y-4'>
-              <div className='text-6xl md:text-7xl mb-2'>💾</div>
+              <div className='text-6xl md:text-7xl mb-2 animate-floating'>
+                💾
+              </div>
               <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
                 Save and share
               </h3>
@@ -255,7 +324,7 @@ export default function Home() {
             </div>
             <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
               <div className='flex justify-center items-center pb-6'>
-                <div className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+                <div className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered scale-on-hover'>
                   <Image
                     src='/share.png'
                     alt='Save and share screen'
@@ -270,7 +339,7 @@ export default function Home() {
         </section>
 
         {/* Perfect For */}
-        <section className='space-y-8 max-w-4xl mx-auto'>
+        <section className='space-y-8 max-w-4xl mx-auto fade-in-on-scroll'>
           <h2 className='text-4xl md:text-6xl text-black text-center font-groen'>
             Perfect for
           </h2>
@@ -292,7 +361,7 @@ export default function Home() {
         </section>
 
         {/* Zones */}
-        <section id='zones' className='space-y-8'>
+        <section id='zones' className='space-y-8 fade-in-on-scroll'>
           <div className='text-center'>
             <h2 className='text-4xl md:text-6xl text-black font-groen mb-4'>
               Zones
@@ -327,7 +396,7 @@ export default function Home() {
           </div>
         </section>
 
-        <div id='download-app' className='pt-8'>
+        <div id='download-app' className='pt-8 fade-in-on-scroll'>
           <div className='bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-lg border border-white/20 max-w-6xl mx-auto'>
             <div className='flex flex-col md:flex-row items-center gap-8 md:gap-12'>
               {/* Left side - Text and buttons */}
@@ -355,14 +424,14 @@ export default function Home() {
                     alt='Download on the App Store'
                     width={180}
                     height={60}
-                    className='h-auto w-[120px] md:w-[180px] rounded-3xl bg-neon-green'
+                    className='h-auto w-[120px] md:w-[180px] rounded-3xl bg-neon-green scale-on-hover'
                   />
                   <Image
                     src='/google-play-button.png'
                     alt='Get it on Google Play'
                     width={180}
                     height={60}
-                    className='h-auto w-[120px] md:w-[180px] rounded-3xl bg-neon-green'
+                    className='h-auto w-[120px] md:w-[180px] rounded-3xl bg-neon-green scale-on-hover'
                   />
                 </div>
               </div>
@@ -374,7 +443,7 @@ export default function Home() {
                   alt='Spot app preview'
                   width={300}
                   height={600}
-                  className='h-auto max-w-[250px] md:max-w-[400px]'
+                  className='h-auto max-w-[250px] md:max-w-[400px] animate-floating'
                   priority
                   unoptimized
                 />
