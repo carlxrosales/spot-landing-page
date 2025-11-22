@@ -116,9 +116,9 @@ export function Navigation() {
   };
 
   return (
-    <nav className='w-full sticky top-0 z-30 py-3 md:py-4 px-4 mt-4 md:mt-6'>
+    <nav className='w-full sticky top-0 z-30 pt-3 pb-3 md:py-4 px-3 md:px-6 mt-4 md:mt-6'>
       <div className='max-w-7xl mx-auto flex justify-center'>
-        <div className='bg-white/70 backdrop-blur-xl rounded-full px-4 md:px-8 py-3 md:py-4 shadow-lg border border-white/20 flex items-center gap-1 md:gap-4 max-w-fit'>
+        <div className='bg-white/70 backdrop-blur-xl rounded-full px-3 md:px-8 py-4 md:py-4 shadow-lg border border-white/20 flex items-center gap-1 md:gap-4 max-w-full md:max-w-fit'>
           <Link
             href='/'
             onClick={(e) => {
@@ -129,11 +129,11 @@ export function Navigation() {
                 window.location.href = "/";
               }
             }}
-            className='text-xl md:text-3xl text-black transition-colors font-groen flex-shrink-0'
+            className='text-2xl md:text-3xl text-black transition-colors font-groen flex-shrink-0'
           >
             spot
           </Link>
-          <div className='flex items-center gap-2 md:gap-6 ml-2 md:ml-8 relative'>
+          <div className='flex items-center gap-1.5 md:gap-6 ml-1.5 md:ml-8 relative'>
             <div
               className='absolute bg-black/10 rounded-full h-8 transition-all duration-300 ease-out z-0'
               style={{
@@ -150,7 +150,7 @@ export function Navigation() {
                 }}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link)}
-                className={`text-xs md:text-base font-medium transition-all whitespace-nowrap relative px-2 md:px-3 py-1.5 rounded-full z-10 ${
+                className={`text-sm md:text-base font-medium transition-all whitespace-nowrap relative px-2 md:px-3 py-2 md:py-1.5 rounded-full z-10 ${
                   activeLink === link.href
                     ? "text-black font-bold"
                     : "text-black"
@@ -163,7 +163,7 @@ export function Navigation() {
           <button
             type='button'
             onClick={handleScrollToDownload}
-            className='inline-flex items-center rounded-full bg-black px-2 md:px-5 py-1.5 md:py-2 text-xs md:text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-1 md:ml-2'
+            className='inline-flex items-center rounded-full bg-black px-3 md:px-5 py-3 md:py-3 text-xs md:text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-1 md:ml-2'
           >
             Download app
           </button>
