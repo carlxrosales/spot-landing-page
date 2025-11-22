@@ -13,34 +13,20 @@ export function Hero() {
       </div>
       <div className='flex flex-col items-center gap-10 pt-8'>
         <div className='flex flex-row gap-2 md:gap-4 justify-center items-center'>
-          <a
-            href='https://apps.apple.com/app/id6755513021'
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label='Download on the App Store'
-          >
-            <Image
-              src='/buttons/app-store-button.png'
-              alt='Download on the App Store'
-              width={180}
-              height={60}
-              className='h-auto w-[150px] md:w-[180px] rounded-3xl bg-neon-green scale-on-hover'
-            />
-          </a>
-          <a
-            href='https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME'
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label='Get it on Google Play'
-          >
-            <Image
-              src='/buttons/google-play-button.png'
-              alt='Get it on Google Play'
-              width={180}
-              height={60}
-              className='h-auto w-[150px] md:w-[180px] rounded-3xl bg-neon-green scale-on-hover'
-            />
-          </a>
+          <Image
+            src='/buttons/app-store-button.png'
+            alt='Download on the App Store'
+            width={180}
+            height={60}
+            className='h-auto w-[150px] md:w-[180px] rounded-3xl bg-neon-green scale-on-hover'
+          />
+          <Image
+            src='/buttons/google-play-button.png'
+            alt='Get it on Google Play'
+            width={180}
+            height={60}
+            className='h-auto w-[150px] md:w-[180px] rounded-3xl bg-neon-green scale-on-hover'
+          />
         </div>
         <Image
           src='/images/hero/spot.png?v=2'
