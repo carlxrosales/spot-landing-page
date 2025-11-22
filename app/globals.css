@@ -142,8 +142,8 @@ body {
 .fade-in-on-scroll {
   opacity: 0 !important;
   transform: scale(0.7) !important;
-  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
-    transform 1.5s cubic-bezier(0.34, 1.8, 0.64, 1) 0.3s !important;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 1.5s cubic-bezier(0.34, 1.8, 0.64, 1) !important;
   will-change: opacity, transform;
 }
 

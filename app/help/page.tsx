@@ -1,7 +1,7 @@
 "use client";
 
-import { PageLayout } from "@/components/page-layout";
-import { Accordion } from "@/components/accordion";
+import { PageLayout } from "@/components/layout/page-layout";
+import { Accordion } from "@/components/ui/accordion";
 import Link from "next/link";
 
 export default function Help() {

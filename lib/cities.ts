@@ -1,4 +1,4 @@
-import type { City } from "@/components/philippines-map";
+import type { City } from "@/components/features/philippines-map";
 
 // City data with coordinates and static counts
 const citiesData: City[] = [

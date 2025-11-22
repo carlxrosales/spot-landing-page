@@ -1,6 +1,6 @@
 "use client";
 
-import { PageLayout } from "@/components/page-layout";
+import { PageLayout } from "@/components/layout/page-layout";
 import Link from "next/link";
 
 export default function Terms() {

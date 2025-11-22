@@ -1,13 +1,13 @@
 "use client";
 
-import { PageLayout } from "@/components/page-layout";
+import { PageLayout } from "@/components/layout/page-layout";
 import dynamic from "next/dynamic";
-import type { City } from "@/components/philippines-map";
+import type { City } from "@/components/features/philippines-map";
 
 // Dynamically import the map component to avoid SSR issues with mapbox-gl
 const PhilippinesMap = dynamic(
   () =>
-    import("@/components/philippines-map").then((mod) => ({
+    import("@/components/features/philippines-map").then((mod) => ({
       default: mod.PhilippinesMap,
     })),
   {
