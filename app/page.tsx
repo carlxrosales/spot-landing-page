@@ -321,8 +321,8 @@ export default function Home() {
         </section>
 
         {/* Perfect For */}
-        <section className='space-y-8 max-w-4xl mx-auto fade-in-on-scroll'>
-          <h2 className='text-4xl md:text-6xl text-black text-center font-groen'>
+        <section className='space-y-8 w-[calc(100%+3rem)] md:w-full max-w-full md:max-w-4xl -ml-6 md:ml-auto md:mx-auto fade-in-on-scroll'>
+          <h2 className='text-4xl md:text-6xl text-black text-center font-groen px-6 md:px-0'>
             Perfect for
           </h2>
           <div className='mt-12'>

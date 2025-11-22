@@ -63,11 +63,11 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
     setSelectedCity(city);
     setIsDropdownOpen(false);
     setSearchQuery("");
-    // Fly to the selected city
+    // Fly to the selected city with zoom constrained to max 18
     setViewState({
       longitude: city.longitude,
       latitude: city.latitude,
-      zoom: 11,
+      zoom: Math.min(11, 18), // Ensure zoom doesn't exceed maxZoom
       bearing: viewState.bearing, // Preserve current rotation
       pitch: viewState.pitch, // Preserve current tilt
     });
@@ -310,6 +310,12 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
         style={{ width: "100%", height: "100%" }}
         mapStyle={mapStyle}
         attributionControl={false}
+        minZoom={5}
+        maxZoom={18}
+        maxBounds={[
+          [116.9, 4.2], // Southwest corner (longitude, latitude)
+          [126.6, 21.1], // Northeast corner (longitude, latitude)
+        ]}
       >
         {mapLoaded &&
           cities.map((city) => (

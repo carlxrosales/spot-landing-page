@@ -167,6 +167,29 @@ body {
   padding: 0;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* Faster animation */
+  animation: popup-fade-in 0.15s ease-out !important;
+}
+
+.mapbox-popup .mapboxgl-popup-tip {
+  /* Faster tip animation */
+  transition: opacity 0.15s ease-out !important;
+}
+
+.mapbox-popup {
+  /* Faster overall popup animation */
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out !important;
+}
+
+@keyframes popup-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .mapbox-popup .mapboxgl-popup-close-button {
