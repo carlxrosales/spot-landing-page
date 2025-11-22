@@ -67,6 +67,20 @@ body {
   will-change: transform;
 }
 
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
 /* Mapbox popup styling */
 .mapbox-popup .mapboxgl-popup-content {
   border-radius: 12px;

@@ -1,12 +1,34 @@
+"use client";
+
 import { PageLayout } from "@/components/page-layout";
 import { Accordion } from "@/components/accordion";
+import Link from "next/link";
 
 export default function Help() {
   return (
     <PageLayout>
       <div className='max-w-4xl mx-auto space-y-12'>
+        <Link
+          href='/'
+          className='inline-flex items-center gap-2 text-black/80 hover:text-black transition-colors mb-4'
+        >
+          <svg
+            className='w-5 h-5'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M15 19l-7-7 7-7'
+            />
+          </svg>
+          <span className='text-base md:text-lg font-medium'>Back</span>
+        </Link>
         <h1 className='text-5xl md:text-6xl text-black text-center font-groen'>
-          Help & Support 💬
+          Help Center
         </h1>
 
         <section className='space-y-6'>
