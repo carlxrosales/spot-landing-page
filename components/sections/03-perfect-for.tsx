@@ -2,7 +2,7 @@ import { PerfectForCarousel } from "@/components/ui/perfect-for-carousel";
 
 export function PerfectFor() {
   return (
-    <section className='space-y-8 w-[calc(100%+3rem)] md:w-full max-w-full md:max-w-4xl -ml-6 md:ml-auto md:mx-auto fade-in-on-scroll'>
+    <section className='space-y-8 w-screen -ml-[calc((100vw-100%)/2)] md:w-full md:max-w-4xl md:ml-0 md:mx-auto fade-in-on-scroll'>
       <h2 className='text-4xl md:text-6xl text-black text-center font-groen px-6 md:px-0'>
         Perfect for
       </h2>
@@ -24,4 +24,3 @@ export function PerfectFor() {
     </section>
   );
 }
-
