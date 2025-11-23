@@ -18,14 +18,14 @@ export function Hero() {
             alt='Download on the App Store'
             width={180}
             height={60}
-            className='h-auto w-[150px] md:w-[180px] rounded-3xl bg-neon-green scale-on-hover'
+            className='h-auto w-[150px] md:w-[250px] rounded-3xl bg-neon-green scale-on-hover'
           />
           <Image
             src='/buttons/google-play-button.png'
             alt='Get it on Google Play'
             width={180}
             height={60}
-            className='h-auto w-[150px] md:w-[180px] rounded-3xl bg-neon-green scale-on-hover'
+            className='h-auto w-[150px] md:w-[250px] rounded-3xl bg-neon-green scale-on-hover'
           />
         </div>
         <Image

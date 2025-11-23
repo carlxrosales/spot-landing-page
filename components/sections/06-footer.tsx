@@ -23,16 +23,16 @@ export function Footer() {
                 Terms
               </a>
               <a
-                href='/help'
-                className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
-              >
-                Help
-              </a>
-              <a
                 href='/privacy'
                 className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
               >
                 Privacy
+              </a>
+              <a
+                href='/help'
+                className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
+              >
+                Help
               </a>
             </div>
           </div>
@@ -41,4 +41,3 @@ export function Footer() {
     </footer>
   );
 }
-

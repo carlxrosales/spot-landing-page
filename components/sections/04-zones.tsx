@@ -55,7 +55,7 @@ export function Zones() {
           Explore cities in the Philippines that have been searched by spot.
         </p>
       </div>
-      <div className='relative bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-lg max-w-7xl mx-auto'>
+      <div className='relative bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-lg max-w-4xl mx-auto'>
         {isLoadingCities ? (
           <div className='h-[600px] flex items-center justify-center'>
             <p className='text-xl text-gray'>Loading cities data...</p>

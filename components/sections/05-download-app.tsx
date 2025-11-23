@@ -3,7 +3,7 @@ import Image from "next/image";
 export function DownloadApp() {
   return (
     <div id='download-app' className='pt-8 fade-in-on-scroll'>
-      <div className='bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-lg border border-white/20 max-w-6xl mx-auto'>
+      <div className='bg-white/80 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-lg border border-white/20 max-w-4xl mx-auto'>
         <div className='flex flex-col md:flex-row items-center gap-8 md:gap-12'>
           {/* Left side - Text and buttons */}
           <div className='flex-1 space-y-6 text-center md:text-left'>
