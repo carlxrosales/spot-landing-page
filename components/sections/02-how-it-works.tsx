@@ -44,18 +44,18 @@ export function HowItWorks() {
               vibe how you wanna vibe
             </p>
           </div>
-          <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
-            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative isolate'>
+          <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-hidden'>
+            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative'>
               <div
                 onClick={() => handleImageClick("vibe1")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "vibe1" ? "z-50" : "z-10"
+                  enlargedImage === "vibe1" ? "z-50" : "z-auto"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "vibe1" ? "scale(1.5)" : "scale(1)",
-                  transformOrigin: "left center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: enlargedImage === "vibe1" ? 50 : "auto",
                 }}
                 onMouseEnter={(e) => {
                   if (enlargedImage !== "vibe1") {
@@ -81,13 +81,13 @@ export function HowItWorks() {
               <div
                 onClick={() => handleImageClick("vibe2")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "vibe2" ? "z-50" : "z-10"
+                  enlargedImage === "vibe2" ? "z-50" : "z-auto"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "vibe2" ? "scale(1.5)" : "scale(1)",
-                  transformOrigin: "right center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: enlargedImage === "vibe2" ? 50 : "auto",
                 }}
                 onMouseEnter={(e) => {
                   if (enlargedImage !== "vibe2") {
@@ -122,21 +122,21 @@ export function HowItWorks() {
               spot got you
             </h3>
             <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
-              spot spots the spots for your spot
+              spot spots the spots for your vibe
             </p>
           </div>
-          <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
-            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative isolate'>
+          <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-hidden'>
+            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative'>
               <div
                 onClick={() => handleImageClick("finding")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "finding" ? "z-50" : "z-10"
+                  enlargedImage === "finding" ? "z-50" : "z-auto"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "finding" ? "scale(1.5)" : "scale(1)",
-                  transformOrigin: "left center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: enlargedImage === "finding" ? 50 : "auto",
                 }}
                 onMouseEnter={(e) => {
                   if (enlargedImage !== "finding") {
@@ -162,13 +162,13 @@ export function HowItWorks() {
               <div
                 onClick={() => handleImageClick("spot")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "spot" ? "z-50" : "z-10"
+                  enlargedImage === "spot" ? "z-50" : "z-auto"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "spot" ? "scale(1.5)" : "scale(1)",
-                  transformOrigin: "right center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: enlargedImage === "spot" ? 50 : "auto",
                 }}
                 onMouseEnter={(e) => {
                   if (enlargedImage !== "spot") {
@@ -208,18 +208,18 @@ export function HowItWorks() {
               set your distance, peek the deets, and bounce there instantly
             </p>
           </div>
-          <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
-            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative isolate'>
+          <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-hidden'>
+            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative'>
               <div
                 onClick={() => handleImageClick("distance")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "distance" ? "z-50" : "z-10"
+                  enlargedImage === "distance" ? "z-50" : "z-auto"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "distance" ? "scale(1.5)" : "scale(1)",
-                  transformOrigin: "left center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: enlargedImage === "distance" ? 50 : "auto",
                 }}
                 onMouseEnter={(e) => {
                   if (enlargedImage !== "distance") {
@@ -245,13 +245,13 @@ export function HowItWorks() {
               <div
                 onClick={() => handleImageClick("description")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "description" ? "z-50" : "z-10"
+                  enlargedImage === "description" ? "z-50" : "z-auto"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "description" ? "scale(1.5)" : "scale(1)",
-                  transformOrigin: "right center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: enlargedImage === "description" ? 50 : "auto",
                 }}
                 onMouseEnter={(e) => {
                   if (enlargedImage !== "description") {
@@ -286,21 +286,21 @@ export function HowItWorks() {
               swipe & decide
             </h3>
             <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
-              swipe left = negats, swipe right = bet
+              left = negats, right = bet
             </p>
           </div>
-          <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
-            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative isolate'>
+          <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-hidden'>
+            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative'>
               <div
                 onClick={() => handleImageClick("swipe1")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "swipe1" ? "z-50" : "z-10"
+                  enlargedImage === "swipe1" ? "z-50" : "z-auto"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "swipe1" ? "scale(1.5)" : "scale(1)",
-                  transformOrigin: "left center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: enlargedImage === "swipe1" ? 50 : "auto",
                 }}
                 onMouseEnter={(e) => {
                   if (enlargedImage !== "swipe1") {
@@ -326,13 +326,13 @@ export function HowItWorks() {
               <div
                 onClick={() => handleImageClick("swipe2")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "swipe2" ? "z-50" : "z-10"
+                  enlargedImage === "swipe2" ? "z-50" : "z-auto"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "swipe2" ? "scale(1.5)" : "scale(1)",
-                  transformOrigin: "right center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  zIndex: enlargedImage === "swipe2" ? 50 : "auto",
                 }}
                 onMouseEnter={(e) => {
                   if (enlargedImage !== "swipe2") {
