@@ -147,19 +147,12 @@ export default function Zones() {
     <PageLayout>
       <div className='max-w-7xl mx-auto space-y-12 md:space-y-16 px-4 md:px-8'>
         <div className='text-center'>
-          <h1 className='text-5xl md:text-6xl text-black mb-4 font-groen'>
-            zones
-          </h1>
+          <h1 className='text-5xl md:text-6xl text-black font-groen'>zones</h1>
           <p className='text-xl md:text-2xl text-black/80 max-w-3xl mx-auto'>
             discover ph cities on spot
           </p>
         </div>
         <PhilippinesMap cities={philippineCities} mapboxToken={mapboxToken} />
-        <div className='text-center'>
-          <p className='text-lg text-black/70'>
-            hit the markers to check out each city
-          </p>
-        </div>
       </div>
     </PageLayout>
   );

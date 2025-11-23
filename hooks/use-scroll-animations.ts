@@ -1,10 +1,15 @@
 import { useEffect } from "react";
+import {
+  SCROLL_ANIMATION_DELAY,
+  INTERSECTION_OBSERVER_THRESHOLD,
+  INTERSECTION_OBSERVER_ROOT_MARGIN,
+} from "@/lib/constants";
 
 export function useScrollAnimations() {
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px 200px 0px",
+      threshold: INTERSECTION_OBSERVER_THRESHOLD,
+      rootMargin: INTERSECTION_OBSERVER_ROOT_MARGIN,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -22,7 +27,7 @@ export function useScrollAnimations() {
       elements.forEach((el) => {
         observer.observe(el);
       });
-    }, 100);
+    }, SCROLL_ANIMATION_DELAY);
 
     return () => {
       clearTimeout(timeoutId);

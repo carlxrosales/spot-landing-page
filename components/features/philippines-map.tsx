@@ -249,7 +249,7 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
   }, [isDropdownOpen]);
 
   return (
-    <div className='w-full h-[600px] md:h-[700px] rounded-3xl overflow-hidden shadow-lg relative'>
+    <div className='w-full h-[80vh] md:h-[700px] rounded-3xl overflow-hidden shadow-lg relative'>
       {/* City Dropdown */}
       <div className='absolute top-4 left-4 z-10 city-dropdown-container'>
         <div className='relative'>

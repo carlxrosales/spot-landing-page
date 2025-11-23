@@ -1,0 +1,50 @@
+/**
+ * Touch target utilities for mobile accessibility
+ * Ensures interactive elements meet the 44x44px minimum hit target
+ */
+
+/* Base touch target - ensures minimum 44x44px */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Touch target with padding (use when you can't change element size) */
+.touch-target-padding {
+  padding: 11px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Touch target for small text/icon buttons */
+.touch-target-small {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+}
+
+/* Touch target for links */
+.touch-target-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 4px;
+}
+
+/* Touch manipulation - prevents double-tap zoom on iOS */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Tailwind equivalent classes (for reference):
+ * 
+ * min-w-[44px] min-h-[44px] flex items-center justify-center
+ * p-[11px] min-w-[44px] min-h-[44px]
+ * touch-manipulation
+ * -webkit-tap-highlight-color: transparent (add to global CSS)
+ */
+

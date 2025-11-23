@@ -1,0 +1,55 @@
+/**
+ * Focus management styles for accessibility
+ * Provides visible, consistent focus indicators across the application
+ */
+
+/* Base focus styles - visible and high contrast */
+.focus-visible {
+  outline: 2px solid rgb(30, 30, 30);
+  outline-offset: 2px;
+}
+
+/* Focus styles for interactive elements */
+.focus-ring {
+  outline: 2px solid rgb(30, 30, 30);
+  outline-offset: 2px;
+  border-radius: 9999px;
+}
+
+/* Focus styles for buttons */
+.focus-button {
+  outline: 2px solid rgb(30, 30, 30);
+  outline-offset: 2px;
+}
+
+/* Focus styles for links */
+.focus-link {
+  outline: 2px solid rgb(30, 30, 30);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* High contrast focus for dark backgrounds */
+.focus-light {
+  outline: 2px solid rgb(225, 255, 91);
+  outline-offset: 2px;
+}
+
+/* Remove default focus outline when using custom styles */
+.focus-custom:focus {
+  outline: none;
+}
+
+.focus-custom:focus-visible {
+  outline: 2px solid rgb(30, 30, 30);
+  outline-offset: 2px;
+}
+
+/* Tailwind equivalent classes (for reference):
+ * 
+ * focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2
+ * 
+ * Or using the project's design tokens:
+ * focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-transparent
+ */
+

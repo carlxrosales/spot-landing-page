@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, memo } from "react";
+import { useState, useCallback, memo, useEffect } from "react";
 import Image from "next/image";
 
 interface ImageCardProps {
@@ -43,9 +43,20 @@ const ImageCard = memo(
     return (
       <div
         onClick={() => onImageClick(imageId)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onImageClick(imageId);
+          }
+        }}
+        tabIndex={0}
+        role='button'
+        aria-label={`${alt}. Click to ${
+          isEnlarged ? "minimize" : "enlarge"
+        } image`}
         className={`${
           fullWidth ? "w-full" : "w-1/2"
-        } max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible`}
+        } max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-transparent`}
         style={{
           transformOrigin: "center center",
           transform: isEnlarged ? "scale(1.5)" : "scale(1)",
@@ -60,8 +71,22 @@ const ImageCard = memo(
             src={src}
             alt={alt}
             fill
+            loading='lazy'
             className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
             sizes='(max-width: 768px) 140px, 320px'
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = "none";
+              const fallback = document.createElement("div");
+              fallback.className =
+                "absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-500 text-sm";
+              fallback.textContent = "Image unavailable";
+              fallback.setAttribute(
+                "aria-label",
+                `${alt} - Image failed to load`
+              );
+              target.parentElement?.appendChild(fallback);
+            }}
           />
         </div>
       </div>
@@ -74,6 +99,29 @@ ImageCard.displayName = "ImageCard";
 export function HowItWorks() {
   const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Add visible class to fade-in-on-scroll elements after mount
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const elements = document.querySelectorAll(".fade-in-on-scroll");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
+
   const handleImageClick = useCallback((imageId: string) => {
     setEnlargedImage((prev) => (prev === imageId ? null : imageId));
   }, []);
@@ -81,12 +129,12 @@ export function HowItWorks() {
   return (
     <>
       {/* How It Works */}
-      <section id='how-it-works' className='space-y-16 md:space-y-24 mb-25'>
-        <div className='text-center space-y-4 fade-in-on-scroll '>
+      <section id='how-it-works' className='space-y-16 md:space-y-24 mb-24'>
+        <div className='text-center space-y-4 fade-in-on-scroll'>
           <h2 className='text-5xl md:text-6xl text-black font-groen'>
             how it works
           </h2>
-          <p className='text-2xl md:text-2xl text-black/80 max-w-3xl mx-auto'>
+          <p className='text-xl md:text-xl text-black/80 max-w-3xl mx-auto'>
             spot makes it stupid easy to find exactly what you're in the mood
             for
           </p>
@@ -99,15 +147,6 @@ export function HowItWorks() {
       >
         {/* pick your mood */}
         <div className='space-y-8 max-w-6xl mx-auto fade-in-on-scroll'>
-          <div className='flex flex-col items-center space-y-4'>
-            <div className='text-5xl md:text-6xl mb-4 animate-flip'>✅</div>
-            <h3 className='text-3xl md:text-4xl text-black font-groen text-center mb-1'>
-              vibe check
-            </h3>
-            <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
-              vibe how you wanna vibe
-            </p>
-          </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-visible'>
             <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative overflow-visible'>
               <ImageCard

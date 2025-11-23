@@ -1,6 +1,13 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
-export function Hero() {
+import type { ReactElement } from "react";
+
+export function Hero(): ReactElement {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <section className='text-center space-y-8'>
       <div className='space-y-0 mb-1'>
@@ -12,15 +19,25 @@ export function Hero() {
         </p>
       </div>
       <div className='flex flex-col items-center gap-10 pt-8'>
-        <Image
-          src='/images/hero/spot.png?v=2'
-          alt='Spot app preview'
-          width={600}
-          height={1200}
-          className='h-auto w-full max-w-[300px] md:max-w-[600px]'
-          priority
-          unoptimized
-        />
+        {imageError ? (
+          <div
+            className='h-[600px] w-full max-w-[300px] md:max-w-[600px] bg-gray-200 flex items-center justify-center text-gray-500'
+            aria-label='Spot app preview - Image failed to load'
+          >
+            <span>Image unavailable</span>
+          </div>
+        ) : (
+          <Image
+            src='/images/hero/spot.png?v=2'
+            alt='Spot app preview'
+            width={600}
+            height={1200}
+            className='h-auto w-full max-w-[300px] md:max-w-[600px]'
+            priority
+            unoptimized
+            onError={() => setImageError(true)}
+          />
+        )}
       </div>
     </section>
   );

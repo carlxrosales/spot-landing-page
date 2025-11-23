@@ -15,26 +15,28 @@ export function Footer() {
             </div>
 
             {/* Links */}
-            <div className='flex flex-wrap gap-6 md:gap-8'>
-              <a
-                href='/terms'
-                className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
-              >
-                Terms
-              </a>
-              <a
-                href='/privacy'
-                className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
-              >
-                Privacy
-              </a>
-              <a
-                href='/help'
-                className='text-base md:text-lg text-black/80 hover:text-black transition-colors'
-              >
-                Help
-              </a>
-            </div>
+            <nav aria-label='Footer navigation'>
+              <div className='flex flex-wrap gap-6 md:gap-8'>
+                <a
+                  href='/terms'
+                  className='text-base md:text-lg text-black/80 hover:text-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded px-1'
+                >
+                  Terms
+                </a>
+                <a
+                  href='/privacy'
+                  className='text-base md:text-lg text-black/80 hover:text-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded px-1'
+                >
+                  Privacy
+                </a>
+                <a
+                  href='/help'
+                  className='text-base md:text-lg text-black/80 hover:text-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 focus-visible:ring-offset-transparent rounded px-1'
+                >
+                  Help
+                </a>
+              </div>
+            </nav>
           </div>
         </div>
       </div>

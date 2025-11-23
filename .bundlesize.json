@@ -1,0 +1,19 @@
+[
+  {
+    "path": ".next/static/chunks/pages/_app-*.js",
+    "maxSize": "200 kB"
+  },
+  {
+    "path": ".next/static/chunks/pages/index-*.js",
+    "maxSize": "150 kB"
+  },
+  {
+    "path": ".next/static/chunks/mapbox-*.js",
+    "maxSize": "500 kB"
+  },
+  {
+    "path": ".next/static/chunks/vendor-*.js",
+    "maxSize": "300 kB"
+  }
+]
+
