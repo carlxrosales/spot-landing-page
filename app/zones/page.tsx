@@ -148,18 +148,16 @@ export default function Zones() {
       <div className='max-w-7xl mx-auto space-y-12 md:space-y-16 px-4 md:px-8'>
         <div className='text-center'>
           <h1 className='text-5xl md:text-6xl text-black mb-4 font-groen'>
-            Zones
+            zones
           </h1>
           <p className='text-xl md:text-2xl text-black/80 max-w-3xl mx-auto'>
-            Explore cities in the Philippines that have been searched by spot.
+            discover ph cities on spot
           </p>
         </div>
-        <div className='relative bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-lg'>
-          <PhilippinesMap cities={philippineCities} mapboxToken={mapboxToken} />
-        </div>
+        <PhilippinesMap cities={philippineCities} mapboxToken={mapboxToken} />
         <div className='text-center'>
           <p className='text-lg text-black/70'>
-            Click on the markers to learn more about each city
+            hit the markers to check out each city
           </p>
         </div>
       </div>

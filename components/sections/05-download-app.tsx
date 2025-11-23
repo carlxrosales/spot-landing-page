@@ -7,20 +7,20 @@ export function DownloadApp() {
         <div className='flex flex-col md:flex-row items-center gap-8 md:gap-12'>
           {/* Left side - Text and buttons */}
           <div className='flex-1 space-y-6 text-center md:text-left'>
-            <h3 className='text-3xl md:text-4xl font-bold text-black'>
-              Ready to Find Your Spot? Get the app now
+            <h3 className='text-3xl md:text-4xl font-bold text-black font-groen'>
+              Ready to find your spot? Get the app now
             </h3>
             <div className='space-y-3'>
               <div className='flex items-center gap-3 justify-center md:justify-start'>
                 <span className='text-2xl'>✓</span>
                 <p className='text-lg text-black/80'>
-                  Seamless place discovery experience
+                  seamless place discovery experience
                 </p>
               </div>
               <div className='flex items-center gap-3 justify-center md:justify-start'>
                 <span className='text-2xl'>✓</span>
                 <p className='text-lg text-black/80'>
-                  Faster and more efficient
+                  faster and more efficient
                 </p>
               </div>
             </div>

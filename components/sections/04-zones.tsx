@@ -49,10 +49,10 @@ export function Zones() {
     <section id='zones' className='space-y-8 fade-in-on-scroll'>
       <div className='text-center'>
         <h2 className='text-4xl md:text-6xl text-black font-groen mb-4'>
-          Zones
+          zones
         </h2>
         <p className='text-xl md:text-2xl text-black/80 max-w-3xl mx-auto mb-8'>
-          Explore cities in the Philippines that have been searched by spot.
+          discover ph cities on spot
         </p>
       </div>
       <div className='relative bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-lg max-w-4xl mx-auto'>
@@ -75,10 +75,9 @@ export function Zones() {
       </div>
       <div className='text-center'>
         <p className='text-lg text-black/70'>
-          Click on the markers to learn more about each city
+          hit the markers to check out each city
         </p>
       </div>
     </section>
   );
 }
-

@@ -21,23 +21,35 @@ export function Navigation() {
     }
   };
 
-  const handleScrollToDownload = () => {
+  const handleScrollToDownload = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     if (typeof window !== "undefined") {
       if (pathname !== "/") {
         window.location.href = "/#download-app";
         return;
       }
 
-      const element = document.getElementById("download-app");
-      if (element) {
-        const offset = 100;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.getElementById("download-app");
+        if (element) {
+          const offset = 100;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+          // Use requestAnimationFrame for better mobile compatibility
+          requestAnimationFrame(() => {
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          });
+        }
+      }, 100);
     }
   };
 
@@ -118,7 +130,7 @@ export function Navigation() {
   return (
     <nav className='w-full sticky top-0 z-30 pt-2 pb-2 md:py-3 px-4 md:px-8 mt-4 md:mt-6'>
       <div className='max-w-7xl mx-auto flex justify-center'>
-        <div className='bg-white/70 backdrop-blur-xl rounded-full pl-6 pr-3 md:pl-12 md:pr-6 py-2 md:py-3 shadow-lg border border-white/20 flex items-center gap-2 md:gap-6 max-w-full md:max-w-fit'>
+        <div className='bg-white/70 backdrop-blur-xl rounded-full pl-6 pr-3 md:pl-12 md:pr-6 py-2 md:py-3 shadow-lg border border-white/20 flex items-center gap-2 md:gap-6 max-w-full md:max-w-fit pointer-events-auto touch-manipulation'>
           <Link
             href='/'
             onClick={(e) => {
@@ -129,7 +141,8 @@ export function Navigation() {
                 window.location.href = "/";
               }
             }}
-            className='text-2xl md:text-4xl text-black transition-colors font-groen flex-shrink-0 ml-2'
+            className='text-2xl md:text-4xl text-black transition-colors font-groen flex-shrink-0 ml-2 cursor-pointer touch-manipulation pointer-events-auto'
+            style={{ cursor: "pointer", touchAction: "manipulation" }}
           >
             spot
           </Link>
@@ -163,7 +176,8 @@ export function Navigation() {
           <button
             type='button'
             onClick={handleScrollToDownload}
-            className='inline-flex items-center rounded-full bg-black px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-8 mr-1 cursor-pointer'
+            className='inline-flex items-center rounded-full bg-black px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-8 mr-1 cursor-pointer touch-manipulation pointer-events-auto'
+            style={{ cursor: "pointer", touchAction: "manipulation" }}
           >
             Download
           </button>

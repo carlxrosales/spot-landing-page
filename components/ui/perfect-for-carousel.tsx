@@ -88,7 +88,7 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
   }, []);
 
   const ItemBox = ({ item }: { item: PerfectForItem }) => (
-    <div className='bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-layered transition-all duration-500 transform hover:scale-105 flex items-center justify-center flex-shrink-0 w-fit'>
+    <div className='bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-layered flex items-center justify-center flex-shrink-0 w-fit'>
       <p className='font-bold text-sm md:text-lg text-black text-center flex items-center gap-2 whitespace-nowrap'>
         <span className='text-base md:text-3xl'>{item.emoji}</span>
         <span>{item.name}</span>
