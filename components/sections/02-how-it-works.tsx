@@ -17,8 +17,8 @@ export function HowItWorks() {
   return (
     <>
       {/* How It Works */}
-      <section id='how-it-works' className='space-y-16 md:space-y-24'>
-        <div className='text-center space-y-4 fade-in-on-scroll'>
+      <section id='how-it-works' className='space-y-16 md:space-y-24 mb-25'>
+        <div className='text-center space-y-4 fade-in-on-scroll '>
           <h2 className='text-5xl md:text-6xl text-black font-groen'>
             how it works
           </h2>

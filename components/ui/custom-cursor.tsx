@@ -65,7 +65,14 @@ export function CustomCursor() {
     document.addEventListener("mouseenter", handleMouseEnter, true);
     document.addEventListener("mouseleave", handleMouseLeave, true);
 
-    document.body.style.cursor = "none";
+    const style = document.createElement("style");
+    style.setAttribute("data-custom-cursor", "true");
+    style.textContent = `
+      *, *::before, *::after {
+        cursor: none !important;
+      }
+    `;
+    document.head.appendChild(style);
 
     return () => {
       document.removeEventListener("mousemove", updateCursor);
@@ -75,7 +82,10 @@ export function CustomCursor() {
       document.removeEventListener("mouseout", handleMouseOut);
       document.removeEventListener("mouseenter", handleMouseEnter, true);
       document.removeEventListener("mouseleave", handleMouseLeave, true);
-      document.body.style.cursor = "auto";
+      const styleElement = document.querySelector('style[data-custom-cursor]');
+      if (styleElement) {
+        styleElement.remove();
+      }
     };
   }, [isVisible]);
 
@@ -90,7 +100,7 @@ export function CustomCursor() {
         transform: `translate(-20%, -20%) scale(${isClicking ? 0.9 : isHovering ? 1.2 : 1})`,
       }}
     >
-      {isHovering ? "👉" : "👆"}
+      {isHovering ? "🤚" : "👆"}
     </div>
   );
 }

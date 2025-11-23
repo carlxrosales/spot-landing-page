@@ -18,6 +18,12 @@
   --font-family-groen: "Groen", sans-serif;
 }
 
+html {
+  overflow-y: scroll !important;
+  scrollbar-gutter: stable;
+  height: 100%;
+}
+
 body {
   background: rgb(225, 255, 91);
   color: rgb(30, 30, 30);
@@ -26,37 +32,48 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overflow-y: scroll !important;
+  height: 100%;
 }
 
 /* Custom Scrollbar Styles */
 /* Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-  width: 12px;
-  -webkit-appearance: none;
+  width: 18px !important;
+  -webkit-appearance: none !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 ::-webkit-scrollbar:vertical {
-  width: 12px;
+  width: 18px !important;
 }
 
 ::-webkit-scrollbar:horizontal {
-  height: 12px;
+  height: 18px !important;
 }
 
 ::-webkit-scrollbar-track {
   background: rgb(225, 255, 91);
   border-radius: 20px;
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
 }
 
 ::-webkit-scrollbar-thumb {
   background: rgb(255, 45, 155);
   border-radius: 20px;
-  border: 2px solid rgb(225, 255, 91);
+  border: 3px solid rgb(225, 255, 91);
   min-height: 30px;
+  -webkit-box-shadow: none;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 45, 155, 0.8);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgb(255, 45, 155);
 }
 
 ::-webkit-scrollbar-corner {
@@ -67,11 +84,6 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: rgb(255, 45, 155) rgb(225, 255, 91);
-}
-
-html {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
 }
 
 .font-groen {
@@ -394,6 +406,10 @@ html {
 }
 
 /* Custom Cursor Styles */
+* {
+  cursor: none !important;
+}
+
 .custom-cursor {
   position: fixed;
   font-size: 24px;
@@ -406,6 +422,9 @@ html {
 }
 
 @media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
   .custom-cursor {
     display: none;
   }
