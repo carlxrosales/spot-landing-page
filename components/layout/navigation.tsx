@@ -129,11 +129,11 @@ export function Navigation() {
                 window.location.href = "/";
               }
             }}
-            className='text-2xl md:text-4xl text-black transition-colors font-groen flex-shrink-0'
+            className='text-2xl md:text-4xl text-black transition-colors ml-4 font-groen flex-shrink-0'
           >
             spot
           </Link>
-          <div className='flex items-center gap-3 md:gap-8 ml-2 md:ml-4 relative'>
+          <div className='hidden md:flex items-center gap-3 md:gap-8 ml-2 md:ml-4 relative'>
             <div
               className='absolute bg-black/10 rounded-full h-9 md:h-10 transition-all duration-300 ease-out z-0'
               style={{
@@ -163,9 +163,9 @@ export function Navigation() {
           <button
             type='button'
             onClick={handleScrollToDownload}
-            className='hidden md:inline-flex items-center rounded-full bg-black px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-auto cursor-pointer'
+            className='inline-flex items-center rounded-full bg-black px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-8 md:ml-auto cursor-pointer'
           >
-            Download app
+            Get in
           </button>
         </div>
       </div>

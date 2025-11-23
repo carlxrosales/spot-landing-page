@@ -45,15 +45,16 @@ export function HowItWorks() {
             </p>
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
-            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
+            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative isolate'>
               <div
                 onClick={() => handleImageClick("vibe1")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "vibe1" ? "z-50" : ""
+                  enlargedImage === "vibe1" ? "z-50" : "z-10"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "vibe1" ? "scale(1.5)" : "scale(1)",
+                  transformOrigin: "left center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
@@ -80,11 +81,12 @@ export function HowItWorks() {
               <div
                 onClick={() => handleImageClick("vibe2")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "vibe2" ? "z-50" : ""
+                  enlargedImage === "vibe2" ? "z-50" : "z-10"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "vibe2" ? "scale(1.5)" : "scale(1)",
+                  transformOrigin: "right center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
@@ -120,19 +122,20 @@ export function HowItWorks() {
               spot got you
             </h3>
             <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
-              spot spots the spots for your vibe
+              spot spots the spots for your spot
             </p>
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
-            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
+            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative isolate'>
               <div
                 onClick={() => handleImageClick("finding")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "finding" ? "z-50" : ""
+                  enlargedImage === "finding" ? "z-50" : "z-10"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "finding" ? "scale(1.5)" : "scale(1)",
+                  transformOrigin: "left center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
@@ -159,11 +162,12 @@ export function HowItWorks() {
               <div
                 onClick={() => handleImageClick("spot")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "spot" ? "z-50" : ""
+                  enlargedImage === "spot" ? "z-50" : "z-10"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "spot" ? "scale(1.5)" : "scale(1)",
+                  transformOrigin: "right center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
@@ -205,15 +209,16 @@ export function HowItWorks() {
             </p>
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
-            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
+            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative isolate'>
               <div
                 onClick={() => handleImageClick("distance")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "distance" ? "z-50" : ""
+                  enlargedImage === "distance" ? "z-50" : "z-10"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "distance" ? "scale(1.5)" : "scale(1)",
+                  transformOrigin: "left center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
@@ -240,11 +245,12 @@ export function HowItWorks() {
               <div
                 onClick={() => handleImageClick("description")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "description" ? "z-50" : ""
+                  enlargedImage === "description" ? "z-50" : "z-10"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "description" ? "scale(1.5)" : "scale(1)",
+                  transformOrigin: "right center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
@@ -280,19 +286,20 @@ export function HowItWorks() {
               swipe & decide
             </h3>
             <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
-              left = negats, right = bet
+              swipe left = negats, swipe right = bet
             </p>
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
-            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6'>
+            <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative isolate'>
               <div
                 onClick={() => handleImageClick("swipe1")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "swipe1" ? "z-50" : ""
+                  enlargedImage === "swipe1" ? "z-50" : "z-10"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "swipe1" ? "scale(1.5)" : "scale(1)",
+                  transformOrigin: "left center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
@@ -319,11 +326,12 @@ export function HowItWorks() {
               <div
                 onClick={() => handleImageClick("swipe2")}
                 className={`w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform ${
-                  enlargedImage === "swipe2" ? "z-50" : ""
+                  enlargedImage === "swipe2" ? "z-50" : "z-10"
                 }`}
                 style={{
                   transform:
                     enlargedImage === "swipe2" ? "scale(1.5)" : "scale(1)",
+                  transformOrigin: "right center",
                   transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
                 onMouseEnter={(e) => {
