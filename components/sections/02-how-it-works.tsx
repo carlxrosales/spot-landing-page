@@ -273,12 +273,12 @@ export function HowItWorks() {
         {/* Location-based picks & Instant directions */}
         <div className='space-y-8 max-w-6xl mx-auto fade-in-on-scroll'>
           <div className='flex flex-col items-center space-y-4'>
-            <div className='text-6xl md:text-7xl mb-2'>💎</div>
+            <div className='text-6xl md:text-7xl mb-2'>📍</div>
             <h3 className='text-3xl md:text-4xl text-black font-groen text-center'>
-              nearby gems
+              nearby spot
             </h3>
             <p className='text-xl md:text-2xl text-black/80 text-center max-w-2xl'>
-              find spots near you & jump in with one tap
+              pick your distance, peek the deets, and bounce there instantly
             </p>
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
