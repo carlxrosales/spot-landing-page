@@ -1,18 +1,82 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, memo } from "react";
 import Image from "next/image";
+
+interface ImageCardProps {
+  imageId: string;
+  src: string;
+  alt: string;
+  enlargedImage: string | null;
+  onImageClick: (imageId: string) => void;
+  fullWidth?: boolean;
+}
+
+const ImageCard = memo(
+  ({
+    imageId,
+    src,
+    alt,
+    enlargedImage,
+    onImageClick,
+    fullWidth = false,
+  }: ImageCardProps) => {
+    const isEnlarged = enlargedImage === imageId;
+    const handleMouseEnter = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isEnlarged) {
+          e.currentTarget.style.transform = "scale(1.05)";
+        }
+      },
+      [isEnlarged]
+    );
+
+    const handleMouseLeave = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isEnlarged) {
+          e.currentTarget.style.transform = "scale(1)";
+        }
+      },
+      [isEnlarged]
+    );
+
+    return (
+      <div
+        onClick={() => onImageClick(imageId)}
+        className={`${
+          fullWidth ? "w-full" : "w-1/2"
+        } max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible`}
+        style={{
+          transformOrigin: "center center",
+          transform: isEnlarged ? "scale(1.5)" : "scale(1)",
+          transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+          zIndex: isEnlarged ? 50 : 1,
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
+            sizes='(max-width: 768px) 140px, 320px'
+          />
+        </div>
+      </div>
+    );
+  }
+);
+
+ImageCard.displayName = "ImageCard";
 
 export function HowItWorks() {
   const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
 
-  const handleImageClick = (imageId: string) => {
-    if (enlargedImage === imageId) {
-      setEnlargedImage(null);
-    } else {
-      setEnlargedImage(imageId);
-    }
-  };
+  const handleImageClick = useCallback((imageId: string) => {
+    setEnlargedImage((prev) => (prev === imageId ? null : imageId));
+  }, []);
 
   return (
     <>
@@ -46,68 +110,20 @@ export function HowItWorks() {
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-visible'>
             <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative overflow-visible'>
-              <div
-                onClick={() => handleImageClick("vibe1")}
-                className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "vibe1" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "vibe1" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "vibe1") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "vibe1") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/screenshots/vibe.png'
-                    alt='Find by vibe screen 1'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
-              <div
-                onClick={() => handleImageClick("vibe2")}
-                className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "vibe2" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "vibe2" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "vibe2") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "vibe2") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/screenshots/vibe2.png'
-                    alt='Find by vibe screen 2'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
+              <ImageCard
+                imageId='vibe1'
+                src='/images/screenshots/vibe.png'
+                alt='Find by vibe screen 1'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+              />
+              <ImageCard
+                imageId='vibe2'
+                src='/images/screenshots/vibe2.png'
+                alt='Find by vibe screen 2'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+              />
             </div>
           </div>
         </div>
@@ -125,68 +141,20 @@ export function HowItWorks() {
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-visible'>
             <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative overflow-visible'>
-              <div
-                onClick={() => handleImageClick("finding")}
-                className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "finding" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "finding" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "finding") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "finding") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/screenshots/finding.png'
-                    alt='AI generates spots screen'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
-              <div
-                onClick={() => handleImageClick("spot")}
-                className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "spot" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "spot" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "spot") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "spot") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/hero/spot.png'
-                    alt='Spot app preview'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
+              <ImageCard
+                imageId='finding'
+                src='/images/screenshots/finding.png'
+                alt='AI generates spots screen'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+              />
+              <ImageCard
+                imageId='spot'
+                src='/images/hero/spot.png'
+                alt='Spot app preview'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+              />
             </div>
           </div>
         </div>
@@ -206,68 +174,20 @@ export function HowItWorks() {
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-visible'>
             <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative overflow-visible'>
-              <div
-                onClick={() => handleImageClick("distance")}
-                className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "distance" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "distance" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "distance") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "distance") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/screenshots/distance.png'
-                    alt='Location-based distance selection screen'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
-              <div
-                onClick={() => handleImageClick("description")}
-                className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "description" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "description" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "description") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "description") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/screenshots/description.png'
-                    alt='Place description and directions screen'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
+              <ImageCard
+                imageId='distance'
+                src='/images/screenshots/distance.png'
+                alt='Location-based distance selection screen'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+              />
+              <ImageCard
+                imageId='description'
+                src='/images/screenshots/description.png'
+                alt='Place description and directions screen'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+              />
             </div>
           </div>
         </div>
@@ -285,68 +205,20 @@ export function HowItWorks() {
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto overflow-visible'>
             <div className='flex flex-row gap-3 md:gap-6 justify-center items-center pb-6 relative overflow-visible'>
-              <div
-                onClick={() => handleImageClick("swipe1")}
-                className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "swipe1" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "swipe1" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "swipe1") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "swipe1") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/screenshots/swipe1.png'
-                    alt='Swipe for places screen 1'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
-              <div
-                onClick={() => handleImageClick("swipe2")}
-                className='w-1/2 max-w-[140px] md:max-w-xs aspect-[9/19] relative rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform overflow-visible'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "swipe2" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "swipe2" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "swipe2") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "swipe2") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/screenshots/swipe2.png'
-                    alt='Swipe for places screen 2'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
+              <ImageCard
+                imageId='swipe1'
+                src='/images/screenshots/swipe1.png'
+                alt='Swipe for places screen 1'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+              />
+              <ImageCard
+                imageId='swipe2'
+                src='/images/screenshots/swipe2.png'
+                alt='Swipe for places screen 2'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+              />
             </div>
           </div>
         </div>
@@ -364,37 +236,14 @@ export function HowItWorks() {
           </div>
           <div className='bg-white/70 backdrop-blur-xl rounded-[2rem] px-4 md:px-8 py-8 md:py-12 shadow-lg border border-white/20 mt-8 max-w-4xl mx-auto'>
             <div className='flex justify-center items-center pb-6'>
-              <div
-                onClick={() => handleImageClick("share")}
-                className='w-full max-w-[140px] md:max-w-xs aspect-[9/19] relative overflow-visible rounded-[1.5rem] md:rounded-[4rem] cursor-pointer will-change-transform'
-                style={{
-                  transformOrigin: "center center",
-                  transform:
-                    enlargedImage === "share" ? "scale(1.5)" : "scale(1)",
-                  transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  zIndex: enlargedImage === "share" ? 50 : 1,
-                }}
-                onMouseEnter={(e) => {
-                  if (enlargedImage !== "share") {
-                    e.currentTarget.style.transform = "scale(1.05)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (enlargedImage !== "share") {
-                    e.currentTarget.style.transform = "scale(1)";
-                  }
-                }}
-              >
-                <div className='relative w-full h-full overflow-hidden rounded-[1.5rem] md:rounded-[4rem] shadow-layered'>
-                  <Image
-                    src='/images/screenshots/share.png'
-                    alt='Save and share screen'
-                    fill
-                    className='object-cover absolute inset-0 rounded-[1.5rem] md:rounded-[4rem]'
-                    sizes='(max-width: 768px) 140px, 320px'
-                  />
-                </div>
-              </div>
+              <ImageCard
+                imageId='share'
+                src='/images/screenshots/share.png'
+                alt='Save and share screen'
+                enlargedImage={enlargedImage}
+                onImageClick={handleImageClick}
+                fullWidth
+              />
             </div>
           </div>
         </div>

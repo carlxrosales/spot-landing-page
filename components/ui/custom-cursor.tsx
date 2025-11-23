@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -8,35 +8,30 @@ export function CustomCursor() {
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  const checkHoverable = useCallback((target: HTMLElement | null): boolean => {
+    if (!target) return false;
+    
+    const tagName = target.tagName.toLowerCase();
+    
+    if (tagName === "a" || tagName === "button") return true;
+    if (target.hasAttribute("onclick") || target.getAttribute("role") === "button") return true;
+    if (target.closest("a") !== null || target.closest("button") !== null) return true;
+    
+    const computedStyle = window.getComputedStyle(target);
+    return computedStyle.cursor === "pointer";
+  }, []);
+
   useEffect(() => {
     const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     if (isTouchDevice) return;
 
     const updateCursor = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
+      setIsVisible((prev) => prev || true);
     };
 
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
-
-    const checkHoverable = (target: HTMLElement | null): boolean => {
-      if (!target) return false;
-      
-      const tagName = target.tagName.toLowerCase();
-      const computedStyle = window.getComputedStyle(target);
-      const cursor = computedStyle.cursor;
-      
-      return (
-        tagName === "a" ||
-        tagName === "button" ||
-        cursor === "pointer" ||
-        target.hasAttribute("onclick") ||
-        target.getAttribute("role") === "button" ||
-        target.closest("a") !== null ||
-        target.closest("button") !== null
-      );
-    };
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -87,7 +82,7 @@ export function CustomCursor() {
         styleElement.remove();
       }
     };
-  }, [isVisible]);
+  }, [checkHoverable]);
 
   if (!isVisible) return null;
 

@@ -29,11 +29,6 @@ export function Zones() {
       try {
         setIsLoadingCities(true);
         const cities = await getCitiesWithCounts();
-        console.log("Fetched cities with counts:", cities);
-        const marikina = cities.find((c) => c.id === "marikina");
-        if (marikina) {
-          console.log("Marikina data:", marikina);
-        }
         setPhilippineCities(cities);
       } catch (error) {
         console.error("Error fetching cities:", error);

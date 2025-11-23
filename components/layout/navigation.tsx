@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,33 +15,29 @@ export function Navigation() {
     { href: "/#zones", label: "zones", isScroll: true },
   ];
 
-  const handleScrollToTop = () => {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+  const handleScrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
-  const handleScrollToDownload = (e?: React.MouseEvent) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+  const handleScrollToDownload = useCallback(
+    (e?: React.MouseEvent) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
 
-    if (typeof window !== "undefined") {
       if (pathname !== "/") {
         window.location.href = "/#download-app";
         return;
       }
 
-      // Small delay to ensure DOM is ready
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         const element = document.getElementById("download-app");
         if (element) {
           const offset = 100;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-          // Use requestAnimationFrame for better mobile compatibility
           requestAnimationFrame(() => {
             window.scrollTo({
               top: offsetPosition,
@@ -49,31 +45,33 @@ export function Navigation() {
             });
           });
         }
-      }, 100);
-    }
-  };
+      });
+    },
+    [pathname]
+  );
 
-  const updateIndicator = (linkHref: string) => {
-    setTimeout(() => {
-      const linkElement = linkRefs.current[linkHref];
-      if (linkElement) {
-        const parent = linkElement.parentElement;
-        if (parent) {
-          const parentRect = parent.getBoundingClientRect();
-          const linkRect = linkElement.getBoundingClientRect();
-          const left = linkRect.left - parentRect.left;
-          const width = linkRect.width;
-          setIndicatorStyle({ left, width });
-        }
+  const updateIndicator = useCallback((linkHref: string) => {
+    const linkElement = linkRefs.current[linkHref];
+    if (linkElement) {
+      const parent = linkElement.parentElement;
+      if (parent) {
+        const parentRect = parent.getBoundingClientRect();
+        const linkRect = linkElement.getBoundingClientRect();
+        setIndicatorStyle({
+          left: linkRect.left - parentRect.left,
+          width: linkRect.width,
+        });
       }
-    }, 10);
-  };
+    }
+  }, []);
 
   useEffect(() => {
     if (activeLink) {
-      updateIndicator(activeLink);
+      requestAnimationFrame(() => {
+        updateIndicator(activeLink);
+      });
     }
-  }, [activeLink]);
+  }, [activeLink, updateIndicator]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -87,7 +85,7 @@ export function Navigation() {
   }, [activeLink]);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && pathname === "/") {
+    if (pathname === "/") {
       const hash = window.location.hash;
       if (hash) {
         const matchingLink = links.find((link) => link.href === `/${hash}`);
@@ -96,36 +94,41 @@ export function Navigation() {
         }
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  const handleLinkClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    link: { href: string; isScroll?: boolean }
-  ) => {
-    setActiveLink(link.href);
+  const handleLinkClick = useCallback(
+    (
+      e: React.MouseEvent<HTMLAnchorElement>,
+      link: { href: string; isScroll?: boolean }
+    ) => {
+      setActiveLink(link.href);
 
-    if (link.isScroll && link.href.startsWith("/#")) {
-      e.preventDefault();
-      const id = link.href.replace("/#", "");
+      if (link.isScroll && link.href.startsWith("/#")) {
+        e.preventDefault();
+        const id = link.href.replace("/#", "");
 
-      if (pathname !== "/") {
-        window.location.href = `/#${id}`;
-        return;
-      }
+        if (pathname !== "/") {
+          window.location.href = `/#${id}`;
+          return;
+        }
 
-      const element = document.getElementById(id);
-      if (element) {
-        const offset = 100;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
+        requestAnimationFrame(() => {
+          const element = document.getElementById(id);
+          if (element) {
+            const offset = 100;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
         });
       }
-    }
-  };
+    },
+    [pathname]
+  );
 
   return (
     <nav className='w-full sticky top-0 z-30 pt-2 pb-2 md:py-3 px-4 md:px-8 mt-4 md:mt-6'>

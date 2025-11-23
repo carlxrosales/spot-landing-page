@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback, useMemo } from "react";
 
 interface PerfectForItem {
   name: string;
@@ -19,15 +19,15 @@ export function PerfectForCarousel({ items }: PerfectForCarouselProps) {
 
   // Duplicate items 3 times for seamless infinite loop
   // When animation completes one cycle, it resets to show identical content
-  const duplicateItems = (items: PerfectForItem[]) => [
+  const duplicateItems = useCallback((items: PerfectForItem[]) => [
     ...items,
     ...items,
     ...items,
-  ];
+  ], []);
 
-  const row1Items = duplicateItems(row1);
-  const row2Items = duplicateItems(row2);
-  const row3Items = duplicateItems(row3);
+  const row1Items = useMemo(() => duplicateItems(row1), [row1, duplicateItems]);
+  const row2Items = useMemo(() => duplicateItems(row2), [row2, duplicateItems]);
+  const row3Items = useMemo(() => duplicateItems(row3), [row3, duplicateItems]);
 
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);

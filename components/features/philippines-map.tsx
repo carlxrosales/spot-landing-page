@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useMemo, memo } from "react";
 import Map, { Marker, Popup } from "react-map-gl/mapbox";
 import type { MapRef } from "react-map-gl/mapbox";
 
@@ -24,7 +24,9 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const mapRef = useRef<MapRef>(null);
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [viewState, setViewState] = useState({
     longitude: 120.98, // Metro Manila area center
     latitude: 14.5,
@@ -34,47 +36,64 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
   });
 
   // Map styles - day and night versions
-  // If you're seeing the wrong style, the URLs might be swapped - check console logs
   const dayStyle = "mapbox://styles/imsohungry/cmi9egfcc002c01si3f902r14";
   const nightStyle = "mapbox://styles/imsohungry/cmi9f8r8r002r01r96xn6cyj8";
 
   // Function to determine if it's day or night based on current time
-  const getTimeOfDay = () => {
+  const getTimeOfDay = useCallback(() => {
     const now = new Date();
     const hour = now.getHours();
-    const isDay = hour >= 6 && hour < 18;
-    console.log(`⏰ Current hour: ${hour}, Is day: ${isDay}`);
     // Consider 6 AM to 6 PM as day time
-    return isDay ? "day" : "night";
-  };
+    return hour >= 6 && hour < 18 ? "day" : "night";
+  }, []);
 
   // State for current map style based on time of day
   const [mapStyle, setMapStyle] = useState(() => {
     return getTimeOfDay() === "day" ? dayStyle : nightStyle;
   });
 
-  // Philippines center coordinates
-  const philippinesCenter = {
-    longitude: 121.774,
-    latitude: 14.5995,
-  };
+  const handleCitySelect = useCallback(
+    (city: City) => {
+      setSelectedCity(city);
+      setIsDropdownOpen(false);
+      setSearchQuery("");
+      setDebouncedSearchQuery("");
+      // Fly to the selected city with zoom constrained to max 18
+      setViewState((prev) => ({
+        longitude: city.longitude,
+        latitude: city.latitude,
+        zoom: 11,
+        bearing: prev.bearing,
+        pitch: prev.pitch,
+      }));
+    },
+    []
+  );
 
-  const handleCitySelect = (city: City) => {
-    setSelectedCity(city);
-    setIsDropdownOpen(false);
-    setSearchQuery("");
-    // Fly to the selected city with zoom constrained to max 18
-    setViewState({
-      longitude: city.longitude,
-      latitude: city.latitude,
-      zoom: Math.min(11, 18), // Ensure zoom doesn't exceed maxZoom
-      bearing: viewState.bearing, // Preserve current rotation
-      pitch: viewState.pitch, // Preserve current tilt
-    });
-  };
+  // Debounce search query for better performance
+  useEffect(() => {
+    if (searchTimeoutRef.current) {
+      clearTimeout(searchTimeoutRef.current);
+    }
 
-  const filteredCities = cities.filter((city) =>
-    city.name.toLowerCase().includes(searchQuery.toLowerCase())
+    searchTimeoutRef.current = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 150); // 150ms debounce delay
+
+    return () => {
+      if (searchTimeoutRef.current) {
+        clearTimeout(searchTimeoutRef.current);
+      }
+    };
+  }, [searchQuery]);
+
+  // Memoize filtered cities to avoid recalculating on every render
+  const filteredCities = useMemo(
+    () =>
+      cities.filter((city) =>
+        city.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+      ),
+    [cities, debouncedSearchQuery]
   );
 
   const addCustomCityLabels = useCallback(() => {
@@ -153,37 +172,38 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
   // Add custom labels for cities with markers
   // Note: This works best with a Mapbox style that has labels disabled
   useEffect(() => {
-    if (mapLoaded && mapRef.current) {
-      const map = mapRef.current.getMap();
+    if (!mapLoaded || !mapRef.current) return;
 
-      const addLabels = () => {
-        // Add custom labels after a short delay to ensure style is ready
-        setTimeout(() => {
-          addCustomCityLabels();
-        }, 300);
-      };
+    const map = mapRef.current.getMap();
+    let timeoutId: NodeJS.Timeout | undefined;
 
-      // Add labels when style loads (only once)
-      map.once("style.load", addLabels);
+    const addLabels = () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      
+      timeoutId = setTimeout(() => {
+        addCustomCityLabels();
+      }, 300);
+    };
 
-      // Also add immediately if style is already loaded
-      if (map.isStyleLoaded()) {
-        addLabels();
-      }
+    map.once("style.load", addLabels);
 
-      return () => {
-        map.off("style.load", addLabels);
-      };
+    if (map.isStyleLoaded()) {
+      addLabels();
     }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      map.off("style.load", addLabels);
+    };
   }, [mapLoaded, addCustomCityLabels]);
 
   // Update labels when cities array changes
   useEffect(() => {
-    if (mapLoaded && mapRef.current) {
-      const map = mapRef.current.getMap();
-      if (map.isStyleLoaded()) {
-        addCustomCityLabels();
-      }
+    if (!mapLoaded || !mapRef.current) return;
+
+    const map = mapRef.current.getMap();
+    if (map.isStyleLoaded()) {
+      addCustomCityLabels();
     }
   }, [cities, mapLoaded, addCustomCityLabels]);
 
@@ -193,42 +213,25 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
       const timeOfDay = getTimeOfDay();
       const newStyle = timeOfDay === "day" ? dayStyle : nightStyle;
 
-      console.log(`🔍 Debug - Time of day: ${timeOfDay}`);
-      console.log(`🔍 Debug - Selected style:`, newStyle);
-      console.log(`🔍 Debug - Day style URL:`, dayStyle);
-      console.log(`🔍 Debug - Night style URL:`, nightStyle);
-      console.log(`🔍 Debug - Current mapStyle:`, mapStyle);
-
-      // Only update if style actually changed
-      if (newStyle !== mapStyle) {
-        console.log(`🔄 Switching to ${timeOfDay} style:`, newStyle);
-        setMapStyle(newStyle);
-      } else {
-        console.log(`✅ Style already correct (${timeOfDay})`);
-      }
+      setMapStyle((currentStyle) => {
+        if (newStyle !== currentStyle) {
+          return newStyle;
+        }
+        return currentStyle;
+      });
     };
 
-    // Update immediately
     updateStyleBasedOnTime();
 
-    // Check every 5 minutes to update style if time of day changed
     const interval = setInterval(updateStyleBasedOnTime, 5 * 60 * 1000);
 
     return () => clearInterval(interval);
-  }, [mapStyle, dayStyle, nightStyle]);
-
-  // Log current style on mount for verification
-  useEffect(() => {
-    const timeOfDay = getTimeOfDay();
-    const currentStyle = timeOfDay === "day" ? dayStyle : nightStyle;
-    console.log(`🗺️ Map initialized with ${timeOfDay} style:`, currentStyle);
-    console.log(`📅 Current time: ${new Date().toLocaleTimeString()}`);
-    console.log(`☀️ Day style: ${dayStyle}`);
-    console.log(`🌙 Night style: ${nightStyle}`);
-  }, []);
+  }, [getTimeOfDay]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
+    if (!isDropdownOpen) return;
+
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (!target.closest(".city-dropdown-container")) {
@@ -237,12 +240,11 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
       }
     };
 
-    if (isDropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    // Use capture phase for better performance
+    document.addEventListener("mousedown", handleClickOutside, true);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside, true);
     };
   }, [isDropdownOpen]);
 
@@ -274,6 +276,7 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className='w-full px-3 py-2 rounded-md border border-black/20 focus:outline-none focus:ring-2 focus:ring-neon-green/50 text-sm text-black placeholder:text-gray-500'
                   autoFocus
+                  autoComplete='off'
                 />
               </div>
               <div className='overflow-y-auto max-h-[350px]'>
@@ -316,25 +319,18 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
           [116.9, 4.2], // Southwest corner (longitude, latitude)
           [126.6, 21.1], // Northeast corner (longitude, latitude)
         ]}
+        reuseMaps={true}
+        antialias={false}
+        preserveDrawingBuffer={false}
+        renderWorldCopies={false}
       >
         {mapLoaded &&
           cities.map((city) => (
-            <Marker
+            <CityMarker
               key={city.id}
-              longitude={city.longitude}
-              latitude={city.latitude}
-              anchor='bottom'
-              onClick={(e) => {
-                e.originalEvent.stopPropagation();
-                setSelectedCity(city);
-              }}
-            >
-              <div className='cursor-pointer'>
-                <div className='bg-neon-green rounded-full w-6 h-6 border-2 border-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform'>
-                  <div className='bg-black rounded-full w-3 h-3'></div>
-                </div>
-              </div>
-            </Marker>
+              city={city}
+              onSelect={setSelectedCity}
+            />
           ))}
 
         {mapLoaded && selectedCity && (
@@ -374,3 +370,39 @@ export function PhilippinesMap({ cities, mapboxToken }: PhilippinesMapProps) {
     </div>
   );
 }
+
+// Memoized marker component to prevent unnecessary re-renders
+const CityMarker = memo(
+  ({
+    city,
+    onSelect,
+  }: {
+    city: City;
+    onSelect: (city: City) => void;
+  }) => {
+    const handleClick = useCallback(
+      (e: any) => {
+        e.originalEvent.stopPropagation();
+        onSelect(city);
+      },
+      [city, onSelect]
+    );
+
+    return (
+      <Marker
+        longitude={city.longitude}
+        latitude={city.latitude}
+        anchor='bottom'
+        onClick={handleClick}
+      >
+        <div className='cursor-pointer'>
+          <div className='bg-neon-green rounded-full w-6 h-6 border-2 border-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform'>
+            <div className='bg-black rounded-full w-3 h-3'></div>
+          </div>
+        </div>
+      </Marker>
+    );
+  }
+);
+
+CityMarker.displayName = "CityMarker";

@@ -11,15 +11,15 @@ export function DownloadApp() {
               Ready to find your spot? Get the app now
             </h3>
             <div className='space-y-3'>
-              <div className='flex items-center gap-3 justify-center md:justify-start'>
-                <span className='text-2xl'>✓</span>
-                <p className='text-lg text-black/80'>
+              <div className='flex items-start gap-0 md:gap-1 justify-center md:justify-start'>
+                <span className='text-2xl leading-none mt-1'>✓</span>
+                <p className='text-lg text-black/80 ml-1 md:ml-1 flex-1'>
                   seamless place discovery experience
                 </p>
               </div>
-              <div className='flex items-center gap-3 justify-center md:justify-start'>
-                <span className='text-2xl'>✓</span>
-                <p className='text-lg text-black/80'>
+              <div className='flex items-start gap-0 md:gap-1 justify-center md:justify-start'>
+                <span className='text-2xl leading-none mt-1'>✓</span>
+                <p className='text-lg text-black/80 -ml-1 md:ml-1 flex-1'>
                   faster and more efficient
                 </p>
               </div>
