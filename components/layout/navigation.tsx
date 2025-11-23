@@ -129,7 +129,7 @@ export function Navigation() {
                 window.location.href = "/";
               }
             }}
-            className='text-2xl md:text-4xl text-black transition-colors font-groen flex-shrink-0'
+            className='text-2xl md:text-4xl text-black transition-colors font-groen flex-shrink-0 ml-2'
           >
             spot
           </Link>
@@ -163,7 +163,7 @@ export function Navigation() {
           <button
             type='button'
             onClick={handleScrollToDownload}
-            className='inline-flex items-center rounded-full bg-black px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-8 cursor-pointer'
+            className='inline-flex items-center rounded-full bg-black px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-8 mr-1 cursor-pointer'
           >
             Download
           </button>

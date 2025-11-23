@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 
 export const metadata: Metadata = {
   title: "spot: discover & share places",
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className='antialiased'>{children}</body>
+      <body className='antialiased'>
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }
