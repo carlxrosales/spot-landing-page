@@ -11,7 +11,8 @@ export function useScrollAnimations() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove("visible");
         }
       });
     }, observerOptions);
@@ -19,13 +20,7 @@ export function useScrollAnimations() {
     const timeoutId = setTimeout(() => {
       const elements = document.querySelectorAll(".fade-in-on-scroll");
       elements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-        if (isInView) {
-          el.classList.add("visible");
-        } else {
-          observer.observe(el);
-        }
+        observer.observe(el);
       });
     }, 100);
 

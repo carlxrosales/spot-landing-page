@@ -11,8 +11,8 @@ export function Navigation() {
   const linkRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   const links = [
-    { href: "/#how-it-works", label: "How it works", isScroll: true },
-    { href: "/#zones", label: "Zones", isScroll: true },
+    { href: "/#how-it-works", label: "how it works", isScroll: true },
+    { href: "/#zones", label: "zones", isScroll: true },
   ];
 
   const handleScrollToTop = () => {
@@ -163,7 +163,7 @@ export function Navigation() {
           <button
             type='button'
             onClick={handleScrollToDownload}
-            className='hidden md:inline-flex items-center rounded-full bg-black px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-auto'
+            className='hidden md:inline-flex items-center rounded-full bg-black px-3 md:px-4 py-2 md:py-2 text-sm md:text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:bg-neon-green hover:text-black hover:shadow-neon-green/40 flex-shrink-0 ml-auto cursor-pointer'
           >
             Download app
           </button>

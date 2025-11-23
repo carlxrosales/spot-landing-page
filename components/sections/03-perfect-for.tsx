@@ -7,7 +7,7 @@ export function PerfectFor() {
         <h2 className='text-4xl md:text-6xl text-black text-center font-groen px-6 md:px-0'>
           Perfect for
         </h2>
-        <div className='mt-12 -mx-6 md:mx-0'>
+        <div className='mt-6 md:mt-12 md:mx-0'>
           <PerfectForCarousel
             items={[
               { name: "Food trips", emoji: "🍔" },
